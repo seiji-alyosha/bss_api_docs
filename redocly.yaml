@@ -1,0 +1,31 @@
+# See https://redocly.com/docs/cli/configuration/ for more information.
+apis:
+  ennoia@v1: 
+    root: openapi/openapi.yaml
+extends:
+  - recommended
+rules:
+  no-unused-components: error
+  no-server-example.com: off
+theme:
+  openapi:
+    htmlTemplate: ./docs/template.html
+    theme:
+      colors:
+        primary:
+          main: "#color here"
+        text:
+          primary: "color here"
+      typography:
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+      spacing:
+        unit: 8
+        sectionHorizontal: 40
+        sectionVertical: 40
+      components:
+        buttons:
+          borderRadius: "5px"
+        panels:
+          borderRadius: "5px"
+
+      

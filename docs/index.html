@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Ennoia API Documentation</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/png" href="docs/Ennoia.svg">
+      
+      <style>      
+         .redoc-wrap h1 {
+            font-size: 48px;
+         }
+
+         .redoc-wrap h2 {
+            font-size: 28px;
+            font-weight: bold;
+         }
+      </style>
+      <script src="https://cdn.redocly.com/redoc/v2.5.0/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.1.19">.fqkwbU{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.fqkwbU{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g4[id="sc-ggWZvA"]{content:"fqkwbU,"}/*!sc*/
+.bPmFpz{padding:40px 0;}/*!sc*/
+.bPmFpz:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.bPmFpz>.bPmFpz:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.bPmFpz{padding:0;}}/*!sc*/
+.gHrCVQ{padding:40px 0;position:relative;}/*!sc*/
+.gHrCVQ:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.gHrCVQ>.gHrCVQ:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gHrCVQ{padding:0;}}/*!sc*/
+.gHrCVQ:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0, 0, 0, 0.2);}/*!sc*/
+data-styled.g5[id="sc-dTvVRJ"]{content:"bPmFpz,gHrCVQ,"}/*!sc*/
+.bDYKKx{width:40%;color:#ffffff;background-color:#263238;padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.bDYKKx{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g6[id="sc-jwTyAe"]{content:"bDYKKx,"}/*!sc*/
+.FFPsr{background-color:#263238;}/*!sc*/
+data-styled.g7[id="sc-hjsuWn"]{content:"FFPsr,"}/*!sc*/
+.gkiSyE{display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gkiSyE{flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-jJLAfE"]{content:"gkiSyE,"}/*!sc*/
+.iHcAtt{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333533;}/*!sc*/
+data-styled.g9[id="sc-hwkwBN"]{content:"iHcAtt,"}/*!sc*/
+.djrIwa{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333533;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-kNOymR"]{content:"djrIwa,"}/*!sc*/
+.drJHMo{color:#ffffff;}/*!sc*/
+data-styled.g12[id="sc-lgpSej"]{content:"drJHMo,"}/*!sc*/
+.czjApA{border-bottom:1px solid rgba(38, 50, 56, 0.3);margin:1em 0 1em 0;color:rgba(38, 50, 56, 0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
+data-styled.g13[id="sc-eqYatC"]{content:"czjApA,"}/*!sc*/
+.fRdsOi{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.fRdsOi:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover>.fRdsOi::before,h2:hover>.fRdsOi::before,.fRdsOi:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-kcLKEh"]{content:"fRdsOi,"}/*!sc*/
+.FtowP{height:1.3em;width:1.3em;min-width:1.3em;vertical-align:middle;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.cGxVlA{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.cGxVlA polygon{fill:#1d8127;}/*!sc*/
+.jKYZgc{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.jKYZgc polygon{fill:#d41f1c;}/*!sc*/
+.iuNpUs{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
+.iuNpUs polygon{fill:white;}/*!sc*/
+data-styled.g15[id="sc-dntSTA"]{content:"FtowP,cGxVlA,jKYZgc,iuNpUs,"}/*!sc*/
+.biPDaU{border-left:1px solid #676767;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
+@media screen and (max-width: 50rem){.biPDaU{display:block;overflow:hidden;}}/*!sc*/
+tr:first-of-type>.biPDaU,tr.last>.biPDaU{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
+tr:first-of-type>.biPDaU{background-image:linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 22px,
+      #676767 22px,
+      #676767 100%
+    );}/*!sc*/
+tr.last>.biPDaU{background-image:linear-gradient(
+      to bottom,
+      #676767 0%,
+      #676767 22px,
+      transparent 22px,
+      transparent 100%
+    );}/*!sc*/
+tr.last+tr>.biPDaU{border-left-color:transparent;}/*!sc*/
+tr.last:first-child>.biPDaU{background:none;border-left-color:transparent;}/*!sc*/
+data-styled.g18[id="sc-kCuUfV"]{content:"biPDaU,"}/*!sc*/
+.dFOJWJ{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:Courier,monospace;}/*!sc*/
+.dFOJWJ.deprecated{text-decoration:line-through;color:#707070;}/*!sc*/
+data-styled.g20[id="sc-fbQrwq"]{content:"dFOJWJ,"}/*!sc*/
+.fTQdZm{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
+tr.expanded .fTQdZm{border-bottom:none;}/*!sc*/
+@media screen and (max-width: 50rem){.fTQdZm{padding:0 20px;border-bottom:none;border-left:1px solid #676767;}tr.last>.fTQdZm{border-left:none;}}/*!sc*/
+data-styled.g21[id="sc-gGKoUb"]{content:"fTQdZm,"}/*!sc*/
+.fwPDGl{color:#676767;font-family:Courier,monospace;margin-right:10px;}/*!sc*/
+.fwPDGl::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#676767;}/*!sc*/
+.fwPDGl::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#676767;height:7px;}/*!sc*/
+data-styled.g22[id="sc-hwddKA"]{content:"fwPDGl,"}/*!sc*/
+.icJLQx{border-collapse:separate;border-radius:3px;font-size:14px;border-spacing:0;width:100%;}/*!sc*/
+.icJLQx >tr{vertical-align:middle;}/*!sc*/
+@media screen and (max-width: 50rem){.icJLQx{display:block;}.icJLQx >tr,.icJLQx >tbody>tr{display:block;}}/*!sc*/
+@media screen and (max-width: 50rem) and (-ms-high-contrast:none){.icJLQx td{float:left;width:100%;}}/*!sc*/
+.icJLQx .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
+.icJLQx .sc-jaXbil .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil,.icJLQx .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil .sc-jaXbil{background:#ffffff;}/*!sc*/
+data-styled.g24[id="sc-eqNDNG"]{content:"icJLQx,"}/*!sc*/
+.bRPjjS >ul{list-style:none;padding:0;margin:0;margin:0 -5px;}/*!sc*/
+.bRPjjS >ul >li{padding:5px 10px;display:inline-block;background-color:#11171a;border-bottom:1px solid rgba(0, 0, 0, 0.5);cursor:pointer;text-align:center;outline:none;color:#ccc;margin:0 8px 8px 8px;border:1px solid #07090b;border-radius:5px;min-width:60px;font-size:0.9em;font-weight:bold;}/*!sc*/
+.bRPjjS >ul >li.react-tabs__tab--selected{color:#333533;background:#ffffff;}/*!sc*/
+.bRPjjS >ul >li.react-tabs__tab--selected:focus{outline:auto;}/*!sc*/
+.bRPjjS >ul >li:only-child{flex:none;min-width:100px;}/*!sc*/
+.bRPjjS >ul >li.tab-success{color:#1d8127;}/*!sc*/
+.bRPjjS >ul >li.tab-redirect{color:#ffa500;}/*!sc*/
+.bRPjjS >ul >li.tab-info{color:#87ceeb;}/*!sc*/
+.bRPjjS >ul >li.tab-error{color:#d41f1c;}/*!sc*/
+.bRPjjS >.react-tabs__tab-panel{background:#11171a;}/*!sc*/
+.bRPjjS >.react-tabs__tab-panel>div,.bRPjjS >.react-tabs__tab-panel>pre{padding:32px;margin:0;}/*!sc*/
+.bRPjjS >.react-tabs__tab-panel>div>pre{padding:0;}/*!sc*/
+data-styled.g30[id="sc-cOpnSz"]{content:"bRPjjS,"}/*!sc*/
+.kIppRw code[class*='language-'],.kIppRw pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.kIppRw code[class*='language-'],.kIppRw pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.kIppRw pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.kIppRw .token.comment,.kIppRw .token.prolog,.kIppRw .token.doctype,.kIppRw .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
+.kIppRw .token.punctuation{opacity:0.7;}/*!sc*/
+.kIppRw .namespace{opacity:0.7;}/*!sc*/
+.kIppRw .token.property,.kIppRw .token.tag,.kIppRw .token.number,.kIppRw .token.constant,.kIppRw .token.symbol{color:#4a8bb3;}/*!sc*/
+.kIppRw .token.boolean{color:#e64441;}/*!sc*/
+.kIppRw .token.selector,.kIppRw .token.attr-name,.kIppRw .token.string,.kIppRw .token.char,.kIppRw .token.builtin,.kIppRw .token.inserted{color:#a0fbaa;}/*!sc*/
+.kIppRw .token.selector+a,.kIppRw .token.attr-name+a,.kIppRw .token.string+a,.kIppRw .token.char+a,.kIppRw .token.builtin+a,.kIppRw .token.inserted+a,.kIppRw .token.selector+a:visited,.kIppRw .token.attr-name+a:visited,.kIppRw .token.string+a:visited,.kIppRw .token.char+a:visited,.kIppRw .token.builtin+a:visited,.kIppRw .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
+.kIppRw .token.property.string{color:white;}/*!sc*/
+.kIppRw .token.operator,.kIppRw .token.entity,.kIppRw .token.url,.kIppRw .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
+.kIppRw .token.atrule,.kIppRw .token.attr-value,.kIppRw .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
+.kIppRw .token.regex,.kIppRw .token.important{color:#e90;}/*!sc*/
+.kIppRw .token.important,.kIppRw .token.bold{font-weight:bold;}/*!sc*/
+.kIppRw .token.italic{font-style:italic;}/*!sc*/
+.kIppRw .token.entity{cursor:help;}/*!sc*/
+.kIppRw .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-eVqvcJ"]{content:"kIppRw,"}/*!sc*/
+.dKqohl{opacity:0.7;transition:opacity 0.3s ease;text-align:right;}/*!sc*/
+.dKqohl:focus-within{opacity:1;}/*!sc*/
+.dKqohl >button{background-color:transparent;border:0;color:inherit;padding:2px 10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;font-size:14px;line-height:1.5em;cursor:pointer;outline:0;}/*!sc*/
+.dKqohl >button :hover,.dKqohl >button :focus{background:rgba(255, 255, 255, 0.1);}/*!sc*/
+data-styled.g33[id="sc-bbbBoY"]{content:"dKqohl,"}/*!sc*/
+.ghzOpX{position:relative;}/*!sc*/
+data-styled.g37[id="sc-eknHtZ"]{content:"ghzOpX,"}/*!sc*/
+.hZVDrH{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.hZVDrH p:last-child{margin-bottom:0;}/*!sc*/
+.hZVDrH h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333533;margin-top:0;}/*!sc*/
+.hZVDrH h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333533;}/*!sc*/
+.hZVDrH code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 8px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.hZVDrH pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:32px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.hZVDrH pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.hZVDrH pre code:before,.hZVDrH pre code:after{content:none;}/*!sc*/
+.hZVDrH blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.hZVDrH img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.hZVDrH ul,.hZVDrH ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.hZVDrH ul ul,.hZVDrH ol ul,.hZVDrH ul ol,.hZVDrH ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.hZVDrH table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.hZVDrH table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.hZVDrH table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.hZVDrH table th,.hZVDrH table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.hZVDrH table th{text-align:left;font-weight:bold;}/*!sc*/
+.hZVDrH .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.hZVDrH .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.hZVDrH h1:hover>.share-link::before,.hZVDrH h2:hover>.share-link::before,.hZVDrH .share-link:hover::before{visibility:visible;}/*!sc*/
+.hZVDrH a{text-decoration:auto;color:#333533;}/*!sc*/
+.hZVDrH a:visited{color:#333533;}/*!sc*/
+.hZVDrH a:hover{color:#656965;text-decoration:auto;}/*!sc*/
+.hXZWyB{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.hXZWyB p:last-child{margin-bottom:0;}/*!sc*/
+.hXZWyB p:first-child{margin-top:0;}/*!sc*/
+.hXZWyB p:last-child{margin-bottom:0;}/*!sc*/
+.hXZWyB h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333533;margin-top:0;}/*!sc*/
+.hXZWyB h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333533;}/*!sc*/
+.hXZWyB code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 8px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.hXZWyB pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:32px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.hXZWyB pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.hXZWyB pre code:before,.hXZWyB pre code:after{content:none;}/*!sc*/
+.hXZWyB blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.hXZWyB img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.hXZWyB ul,.hXZWyB ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.hXZWyB ul ul,.hXZWyB ol ul,.hXZWyB ul ol,.hXZWyB ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.hXZWyB table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.hXZWyB table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.hXZWyB table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.hXZWyB table th,.hXZWyB table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.hXZWyB table th{text-align:left;font-weight:bold;}/*!sc*/
+.hXZWyB .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.hXZWyB .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.hXZWyB h1:hover>.share-link::before,.hXZWyB h2:hover>.share-link::before,.hXZWyB .share-link:hover::before{visibility:visible;}/*!sc*/
+.hXZWyB a{text-decoration:auto;color:#333533;}/*!sc*/
+.hXZWyB a:visited{color:#333533;}/*!sc*/
+.hXZWyB a:hover{color:#656965;text-decoration:auto;}/*!sc*/
+.bIVjcJ{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.bIVjcJ p:last-child{margin-bottom:0;}/*!sc*/
+.bIVjcJ p:first-child{margin-top:0;}/*!sc*/
+.bIVjcJ p:last-child{margin-bottom:0;}/*!sc*/
+.bIVjcJ p{display:inline-block;}/*!sc*/
+.bIVjcJ h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333533;margin-top:0;}/*!sc*/
+.bIVjcJ h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333533;}/*!sc*/
+.bIVjcJ code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 8px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.bIVjcJ pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:32px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.bIVjcJ pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.bIVjcJ pre code:before,.bIVjcJ pre code:after{content:none;}/*!sc*/
+.bIVjcJ blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.bIVjcJ img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.bIVjcJ ul,.bIVjcJ ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.bIVjcJ ul ul,.bIVjcJ ol ul,.bIVjcJ ul ol,.bIVjcJ ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.bIVjcJ table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.bIVjcJ table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.bIVjcJ table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.bIVjcJ table th,.bIVjcJ table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.bIVjcJ table th{text-align:left;font-weight:bold;}/*!sc*/
+.bIVjcJ .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.bIVjcJ .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.bIVjcJ h1:hover>.share-link::before,.bIVjcJ h2:hover>.share-link::before,.bIVjcJ .share-link:hover::before{visibility:visible;}/*!sc*/
+.bIVjcJ a{text-decoration:auto;color:#333533;}/*!sc*/
+.bIVjcJ a:visited{color:#333533;}/*!sc*/
+.bIVjcJ a:hover{color:#656965;text-decoration:auto;}/*!sc*/
+data-styled.g42[id="sc-fszimp"]{content:"hZVDrH,hXZWyB,bIVjcJ,"}/*!sc*/
+.ljKHqG{display:inline;}/*!sc*/
+data-styled.g43[id="sc-etsjJW"]{content:"ljKHqG,"}/*!sc*/
+.iNCOCX{position:relative;}/*!sc*/
+data-styled.g44[id="sc-fYmhhH"]{content:"iNCOCX,"}/*!sc*/
+.fdRrNy:hover>.sc-bbbBoY{opacity:1;}/*!sc*/
+data-styled.g49[id="sc-dClGHI"]{content:"fdRrNy,"}/*!sc*/
+.dFvLDb{font-family:Courier,monospace;font-size:13px;white-space:pre;contain:content;overflow-x:auto;}/*!sc*/
+.dFvLDb .redoc-json code>.collapser{display:none;pointer-events:none;}/*!sc*/
+.dFvLDb .callback-function{color:gray;}/*!sc*/
+.dFvLDb .collapser:after{content:'-';cursor:pointer;}/*!sc*/
+.dFvLDb .collapsed>.collapser:after{content:'+';cursor:pointer;}/*!sc*/
+.dFvLDb .ellipsis:after{content:' … ';}/*!sc*/
+.dFvLDb .collapsible{margin-left:2em;}/*!sc*/
+.dFvLDb .hoverable{padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;border-radius:2px;}/*!sc*/
+.dFvLDb .hovered{background-color:rgba(235, 238, 249, 1);}/*!sc*/
+.dFvLDb .collapser{background-color:transparent;border:0;color:#fff;font-family:Courier,monospace;font-size:13px;padding-right:6px;padding-left:6px;padding-top:0;padding-bottom:0;display:flex;align-items:center;justify-content:center;width:15px;height:15px;position:absolute;top:4px;left:-1.5em;cursor:default;user-select:none;-webkit-user-select:none;padding:2px;}/*!sc*/
+.dFvLDb .collapser:focus{outline-color:#fff;outline-style:dotted;outline-width:1px;}/*!sc*/
+.dFvLDb ul{list-style-type:none;padding:0px;margin:0px 0px 0px 26px;}/*!sc*/
+.dFvLDb li{position:relative;display:block;}/*!sc*/
+.dFvLDb .hoverable{display:inline-block;}/*!sc*/
+.dFvLDb .selected{outline-style:solid;outline-width:1px;outline-style:dotted;}/*!sc*/
+.dFvLDb .collapsed>.collapsible{display:none;}/*!sc*/
+.dFvLDb .ellipsis{display:none;}/*!sc*/
+.dFvLDb .collapsed>.ellipsis{display:inherit;}/*!sc*/
+data-styled.g50[id="sc-fhfEft"]{content:"dFvLDb,"}/*!sc*/
+.iNRAJK{padding:0.9em;background-color:rgba(38,50,56,0.4);margin:0 0 10px 0;display:block;font-family:Montserrat,sans-serif;font-size:0.929em;line-height:1.5em;}/*!sc*/
+data-styled.g51[id="sc-bAehkN"]{content:"iNRAJK,"}/*!sc*/
+.cXitJ{font-family:Montserrat,sans-serif;font-size:12px;position:absolute;z-index:1;top:-11px;left:12px;font-weight:600;color:rgba(255,255,255,0.7);}/*!sc*/
+data-styled.g52[id="sc-gahYZc"]{content:"cXitJ,"}/*!sc*/
+.iLdyBp{position:relative;}/*!sc*/
+data-styled.g53[id="sc-bSFBcf"]{content:"iLdyBp,"}/*!sc*/
+.eKKwxo{margin-top:15px;}/*!sc*/
+data-styled.g56[id="sc-blIAwI"]{content:"eKKwxo,"}/*!sc*/
+.lhyyLL{vertical-align:middle;font-size:13px;line-height:20px;}/*!sc*/
+data-styled.g58[id="sc-bEjUoa"]{content:"lhyyLL,"}/*!sc*/
+.bWgzPI{color:rgba(101,105,101,0.9);}/*!sc*/
+data-styled.g59[id="sc-boKDdR"]{content:"bWgzPI,"}/*!sc*/
+.bBQgWX{color:#656965;}/*!sc*/
+data-styled.g60[id="sc-fOOuSg"]{content:"bBQgWX,"}/*!sc*/
+.crXmiY{color:#d41f1c;font-size:0.9em;font-weight:normal;margin-left:20px;line-height:1;}/*!sc*/
+data-styled.g62[id="sc-iIvHqT"]{content:"crXmiY,"}/*!sc*/
+.eoAodj{margin:1em 0;}/*!sc*/
+.eoAodj a{text-decoration:auto;color:#333533;}/*!sc*/
+.eoAodj a:visited{color:#333533;}/*!sc*/
+.eoAodj a:hover{color:#656965;text-decoration:auto;}/*!sc*/
+data-styled.g70[id="sc-ixcdjX"]{content:"eoAodj,"}/*!sc*/
+.egvBLr:after{content:' and ';font-weight:normal;}/*!sc*/
+.egvBLr:last-child:after{content:none;}/*!sc*/
+.egvBLr a{text-decoration:auto;color:#333533;}/*!sc*/
+.egvBLr a:visited{color:#333533;}/*!sc*/
+.egvBLr a:hover{color:#656965;text-decoration:auto;}/*!sc*/
+data-styled.g81[id="sc-hqtLyI"]{content:"egvBLr,"}/*!sc*/
+.knktok{white-space:nowrap;}/*!sc*/
+.knktok:after{content:' or ';white-space:pre;}/*!sc*/
+.knktok:last-child:after,.knktok:only-child:after{content:none;}/*!sc*/
+.knktok a{text-decoration:auto;color:#333533;}/*!sc*/
+.knktok a:visited{color:#333533;}/*!sc*/
+.knktok a:hover{color:#656965;text-decoration:auto;}/*!sc*/
+data-styled.g82[id="sc-iVnIWt"]{content:"knktok,"}/*!sc*/
+.dPSGXF{flex:1 1 auto;cursor:pointer;}/*!sc*/
+data-styled.g83[id="sc-hWgKua"]{content:"dPSGXF,"}/*!sc*/
+.fUkQtw{width:75%;text-overflow:ellipsis;border-radius:4px;overflow:hidden;}/*!sc*/
+@media screen and (max-width: 50rem){.fUkQtw{margin-top:10px;}}/*!sc*/
+data-styled.g84[id="sc-jBaHRL"]{content:"fUkQtw,"}/*!sc*/
+.jCoZLr{display:inline-block;margin:0;}/*!sc*/
+data-styled.g85[id="sc-gFqXPY"]{content:"jCoZLr,"}/*!sc*/
+.deUlC{width:100%;display:flex;margin:1em 0;flex-direction:row;}/*!sc*/
+@media screen and (max-width: 50rem){.deUlC{flex-direction:column;}}/*!sc*/
+data-styled.g86[id="sc-ikkVnJ"]{content:"deUlC,"}/*!sc*/
+.hPcPCj{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g92[id="sc-jCWzJg"]{content:"hPcPCj,"}/*!sc*/
+.hijBKj::before{content:'|';display:inline-block;opacity:0.5;width:15px;text-align:center;}/*!sc*/
+.hijBKj:last-child::after{display:none;}/*!sc*/
+data-styled.g94[id="sc-jVxTAy"]{content:"hijBKj,"}/*!sc*/
+.eAqtbt{overflow:hidden;}/*!sc*/
+data-styled.g95[id="sc-erPUmh"]{content:"eAqtbt,"}/*!sc*/
+.beOrEi{display:flex;flex-wrap:wrap;margin-left:-15px;}/*!sc*/
+data-styled.g96[id="sc-iRTMaw"]{content:"beOrEi,"}/*!sc*/
+.boxHVJ{max-height:260px;max-width:260px;padding:2px;width:100%;display:block;}/*!sc*/
+data-styled.g97[id="sc-eKrodz"]{content:"boxHVJ,"}/*!sc*/
+.eWuUlW{text-align:center;}/*!sc*/
+data-styled.g98[id="sc-jkvfRO"]{content:"eWuUlW,"}/*!sc*/
+.cirrIW{display:inline-block;}/*!sc*/
+data-styled.g99[id="sc-eXVaYZ"]{content:"cirrIW,"}/*!sc*/
+.kOLQCX{width:9ex;display:inline-block;height:13px;line-height:13px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.kOLQCX.get{background-color:#2F8132;}/*!sc*/
+.kOLQCX.post{background-color:#186FAF;}/*!sc*/
+.kOLQCX.put{background-color:#95507c;}/*!sc*/
+.kOLQCX.options{background-color:#947014;}/*!sc*/
+.kOLQCX.patch{background-color:#bf581d;}/*!sc*/
+.kOLQCX.delete{background-color:#cc3333;}/*!sc*/
+.kOLQCX.basic{background-color:#707070;}/*!sc*/
+.kOLQCX.link{background-color:#07818F;}/*!sc*/
+.kOLQCX.head{background-color:#A23DAD;}/*!sc*/
+.kOLQCX.hook{background-color:#333533;}/*!sc*/
+.kOLQCX.schema{background-color:#707070;}/*!sc*/
+data-styled.g100[id="sc-jxYSNo"]{content:"kOLQCX,"}/*!sc*/
+.gAPKXX{margin:0;padding:0;}/*!sc*/
+.gAPKXX:first-child{padding-bottom:32px;}/*!sc*/
+.sc-zOxLx .sc-zOxLx{font-size:0.929em;}/*!sc*/
+data-styled.g101[id="sc-zOxLx"]{content:"gAPKXX,"}/*!sc*/
+.ixknQI{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g102[id="sc-cgHfjM"]{content:"ixknQI,"}/*!sc*/
+.bFHysC{cursor:pointer;color:#333333;margin:0;padding:12.5px 32px;display:flex;justify-content:space-between;font-family:Montserrat,sans-serif;background-color:#fafafa;}/*!sc*/
+.bFHysC:hover{color:#333533;background-color:#ededed;}/*!sc*/
+.bFHysC .sc-dntSTA{height:1.5em;width:1.5em;}/*!sc*/
+.bFHysC .sc-dntSTA polygon{fill:#333333;}/*!sc*/
+data-styled.g103[id="sc-fpikKz"]{content:"bFHysC,"}/*!sc*/
+.cxcra{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g104[id="sc-gWaSiO"]{content:"cxcra,"}/*!sc*/
+.bilRCl{font-size:0.8em;margin-top:16px;text-align:center;position:fixed;width:260px;bottom:0;background:#fafafa;}/*!sc*/
+.bilRCl a,.bilRCl a:visited,.bilRCl a:hover{color:#333333!important;padding:8px 0;border-top:1px solid #e1e1e1;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
+.bilRCl img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width: 50rem){.bilRCl{width:100%;}}/*!sc*/
+data-styled.g105[id="sc-kSaXSp"]{content:"bilRCl,"}/*!sc*/
+.jjnszm{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g111[id="sc-eZSpzM"]{content:"jjnszm,"}/*!sc*/
+.kZcHWP{font-family:Courier,monospace;margin-left:10px;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g112[id="sc-jvKoal"]{content:"kZcHWP,"}/*!sc*/
+.iPCVMX{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:flex;white-space:nowrap;align-items:center;border:1px solid transparent;border-bottom:0;transition:border-color 0.25s ease;}/*!sc*/
+.iPCVMX ..sc-jvKoal{color:#ffffff;}/*!sc*/
+.iPCVMX:focus{box-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.45),0 2px 0 rgba(128, 128, 128, 0.25);}/*!sc*/
+data-styled.g113[id="sc-buTqWO"]{content:"iPCVMX,"}/*!sc*/
+.dynMBc{font-size:0.929em;line-height:20px;background-color:#2F8132;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+data-styled.g114[id="sc-fQLpxn"]{content:"dynMBc,"}/*!sc*/
+.ga-DQLq{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0 0 6px rgba(0, 0, 0, 0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;transition:all 0.25s ease;visibility:hidden;transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g115[id="sc-ecJghI"]{content:"ga-DQLq,"}/*!sc*/
+.icOxsG{padding:10px;}/*!sc*/
+data-styled.g116[id="sc-iyBeIh"]{content:"icOxsG,"}/*!sc*/
+.dWvHOB{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#333533;}/*!sc*/
+.dWvHOB >span{color:#333533;}/*!sc*/
+data-styled.g117[id="sc-xKhEK"]{content:"dWvHOB,"}/*!sc*/
+.lkmdtA{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);}/*!sc*/
+.lkmdtA:focus{outline:auto #1d8127;}/*!sc*/
+.ifAHvq{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#d41f1c;background-color:rgba(212,31,28,0.07);}/*!sc*/
+.ifAHvq:focus{outline:auto #d41f1c;}/*!sc*/
+data-styled.g120[id="sc-jIDBmd"]{content:"lkmdtA,ifAHvq,"}/*!sc*/
+.fBhAXU{vertical-align:top;}/*!sc*/
+data-styled.g123[id="sc-eJvlPh"]{content:"fBhAXU,"}/*!sc*/
+.gnFtVc{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333533;font-weight:normal;}/*!sc*/
+data-styled.g124[id="sc-gDzyrw"]{content:"gnFtVc,"}/*!sc*/
+.bjKcsR{margin-bottom:48px;}/*!sc*/
+data-styled.g129[id="sc-bfjeOH"]{content:"bjKcsR,"}/*!sc*/
+.imGMIG{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#333533;}/*!sc*/
+data-styled.g130[id="sc-cZnrqW"]{content:"imGMIG,"}/*!sc*/
+.dsiHUZ{width:260px;background-color:#fafafa;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width: 50rem){.dsiHUZ{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.dsiHUZ{display:none;}}/*!sc*/
+data-styled.g131[id="sc-fstJre"]{content:"dsiHUZ,"}/*!sc*/
+.jFAIOD{outline:none;user-select:none;background-color:#f2f2f2;color:#333533;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width: 50rem){.jFAIOD{display:flex;}}/*!sc*/
+.jFAIOD svg{color:#0065FB;}/*!sc*/
+@media print{.jFAIOD{display:none;}}/*!sc*/
+data-styled.g132[id="sc-jOlHRD"]{content:"jFAIOD,"}/*!sc*/
+.igXcxK{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333533;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
+.igXcxK *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
+data-styled.g133[id="sc-Pgsbw"]{content:"igXcxK,"}/*!sc*/
+.buanwU{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width: 50rem){.buanwU{width:100%;}}/*!sc*/
+data-styled.g134[id="sc-fkYqBV"]{content:"buanwU,"}/*!sc*/
+.iZqpqg{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width: 75rem){.iZqpqg{display:none;}}/*!sc*/
+data-styled.g135[id="sc-evkzZa"]{content:"iZqpqg,"}/*!sc*/
+.gzMPIt{padding:5px 0;}/*!sc*/
+data-styled.g136[id="sc-iRcyzz"]{content:"gzMPIt,"}/*!sc*/
+.cGWMxr{width:calc(100% - 64px);box-sizing:border-box;margin:0 32px;padding:5px 16px 5px 32px;border:0;border-bottom:1px solid #e1e1e1;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g137[id="sc-lhsSio"]{content:"cGWMxr,"}/*!sc*/
+.dqUJdl{position:absolute;left:32px;height:1.8em;width:0.9em;}/*!sc*/
+.dqUJdl path{fill:#333333;}/*!sc*/
+data-styled.g138[id="sc-enPhjR"]{content:"dqUJdl,"}/*!sc*/
+</style>
+   </head>
+  <body>
+    
+      <div id="redoc"><link rel="preload" as="image" href="./Ennoia.svg"/><div class="sc-Pgsbw igXcxK redoc-wrap"><div class="sc-fstJre dsiHUZ menu-content" style="top:0px;height:calc(100vh - 0px)"><div class="sc-jkvfRO eWuUlW"><a href="https://github.com/seiji-alyosha" class="sc-eXVaYZ cirrIW"><img src="./Ennoia.svg" alt="Ennoia logo" class="sc-eKrodz boxHVJ"/></a></div><div role="search" class="sc-iRcyzz gzMPIt"><svg class="sc-enPhjR dqUJdl search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-lhsSio cGWMxr search-input" value=""/></div><div class="sc-eknHtZ ghzOpX scrollbar-container undefined"><ul role="menu" class="sc-zOxLx gAPKXX"><li tabindex="0" depth="2" data-item-id="operation/GetBookInfo" role="menuitem" aria-label="Get information about one book." aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bFHysC -depth2"><span type="get" class="sc-jxYSNo kOLQCX operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-gWaSiO cxcra">Get information about one book.</span></label></li><li tabindex="0" depth="2" data-item-id="operation/GetAllBooks" role="menuitem" aria-label="Get information about all books in your library." aria-expanded="false" class="sc-cgHfjM ixknQI"><label class="sc-fpikKz bFHysC -depth2"><span type="get" class="sc-jxYSNo kOLQCX operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-gWaSiO cxcra">Get information about all books in your library.</span></label></li></ul><div class="sc-kSaXSp bilRCl"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-jOlHRD jFAIOD"><div class="sc-cZnrqW imGMIG"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-fkYqBV buanwU api-content"><div class="sc-dTvVRJ bPmFpz"><div class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU api-info"><h1 class="sc-hwkwBN sc-jCWzJg iHcAtt hPcPCj">Ennoia API<!-- --> <span>(<!-- -->1.0.0<!-- -->)</span></h1><p>Download OpenAPI specification<!-- -->:</p><div class="sc-eVqvcJ sc-fszimp kIppRw hZVDrH"><div class="sc-erPUmh eAqtbt"><div class="sc-iRTMaw beOrEi"><span class="sc-jVxTAy hijBKj">Jake Tanis<!-- -->:<!-- --> <a href="mailto:jakktan@gmail.com">jakktan@gmail.com</a></span> <span class="sc-jVxTAy hijBKj">URL: <a href="https://github.com/seiji-alyosha">https://github.com/seiji-alyosha</a></span> <span class="sc-jVxTAy hijBKj">License:<!-- --> <a href="https://github.com/seiji-alyosha/bookshelf_api_docs?tab=MIT-1-ov-file">MIT</a></span> </div></div></div><div data-role="redoc-summary" html="" class="sc-eVqvcJ sc-fszimp kIppRw hZVDrH"></div><div data-role="redoc-description" html="" class="sc-eVqvcJ sc-fszimp kIppRw hZVDrH"></div><div class="sc-ixcdjX eoAodj"><a href="https://github.com/seiji-alyosha/bookshelf_api_docs">GitHub</a></div></div></div></div><div id="operation/GetBookInfo" data-section-id="operation/GetBookInfo" class="sc-dTvVRJ gHrCVQ"><div data-section-id="operation/GetBookInfo" id="operation/GetBookInfo" class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR djrIwa"><a class="sc-kcLKEh fRdsOi" href="#operation/GetBookInfo" aria-label="operation/GetBookInfo"></a>Get information about one book.<!-- --> </h2><div class="sc-bfjeOH bjKcsR"><div html="&lt;p&gt;Gets the title, author, notes, and the added date of a book based on the book id.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw hZVDrH"><p>Gets the title, author, notes, and the added date of a book based on the book id.</p>
+</div></div><div class="sc-ikkVnJ deUlC"><div class="sc-hWgKua dPSGXF"><h5 class="sc-eqYatC sc-gFqXPY czjApA jCoZLr">Authorizations:</h5><svg class="sc-dntSTA FtowP" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-jBaHRL fUkQtw"><span class="sc-iVnIWt knktok"><span class="sc-hqtLyI egvBLr"><i>basic_auth</i></span></span></div></div><div><h5 class="sc-eqYatC czjApA">path<!-- --> Parameters</h5><table class="sc-eqNDNG icJLQx"><tbody><tr class="last "><td kind="field" title="id" class="sc-kCuUfV sc-fbQrwq biPDaU dFOJWJ"><span class="sc-hwddKA fwPDGl"></span><span class="property-name">id</span><div class="sc-bEjUoa sc-iIvHqT lhyyLL crXmiY">required</div></td><td class="sc-gGKoUb fTQdZm"><div><div><span class="sc-bEjUoa sc-boKDdR lhyyLL bWgzPI"></span><span class="sc-bEjUoa sc-fOOuSg lhyyLL bBQgWX">integer</span></div> <div><div html="&lt;p&gt;The books id.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw hXZWyB"><p>The books id.</p>
+</div></div></div></td></tr></tbody></table></div><div><h3 class="sc-gDzyrw gnFtVc">Responses</h3><div><button class="sc-jIDBmd lkmdtA"><svg class="sc-dntSTA cGxVlA" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-eJvlPh fBhAXU">200<!-- --> </strong><div html="&lt;p&gt;Retrieved book successfully&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp sc-etsjJW kIppRw bIVjcJ ljKHqG"><p>Retrieved book successfully</p>
+</div></button></div><div><button class="sc-jIDBmd ifAHvq"><svg class="sc-dntSTA jKYZgc" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-eJvlPh fBhAXU">401<!-- --> </strong><div html="&lt;p&gt;Authentication failed&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp sc-etsjJW kIppRw bIVjcJ ljKHqG"><p>Authentication failed</p>
+</div></button></div><div><button class="sc-jIDBmd ifAHvq"><svg class="sc-dntSTA jKYZgc" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-eJvlPh fBhAXU">404<!-- --> </strong><div html="&lt;p&gt;Book not found&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp sc-etsjJW kIppRw bIVjcJ ljKHqG"><p>Book not found</p>
+</div></button></div></div></div><div class="sc-jwTyAe sc-hjsuWn bDYKKx FFPsr"><div class="sc-eZSpzM jjnszm"><button class="sc-buTqWO iPCVMX"><span type="get" class="sc-fQLpxn dynMBc http-verb get">get</span><span class="sc-jvKoal kZcHWP">/books/{id}</span><svg class="sc-dntSTA iuNpUs" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-ecJghI ga-DQLq"><div class="sc-iyBeIh icOxsG"><div html="&lt;p&gt;Production server&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw hXZWyB"><p>Production server</p>
+</div><div tabindex="0" role="button"><div class="sc-xKhEK dWvHOB"><span>https://ennoia.pythonanywhere.com/api/v1</span>/books/{id}</div></div></div><div class="sc-iyBeIh icOxsG"><div html="" class="sc-eVqvcJ sc-fszimp kIppRw hXZWyB"></div><div tabindex="0" role="button"><div class="sc-xKhEK dWvHOB"><span>https://username:password@ennoia.pythonanywhere.com/api/v1</span>/books/{id}</div></div></div></div></div><div><h3 class="sc-lgpSej drJHMo"> <!-- -->Response samples<!-- --> </h3><div class="sc-cOpnSz bRPjjS" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="tab«Rjiq»0" aria-selected="true" aria-disabled="false" aria-controls="panel«Rjiq»0" tabindex="0" data-rttab="true">200</li><li class="tab-error" role="tab" id="tab«Rjiq»1" aria-selected="false" aria-disabled="false" aria-controls="panel«Rjiq»1" data-rttab="true">401</li><li class="tab-error" role="tab" id="tab«Rjiq»2" aria-selected="false" aria-disabled="false" aria-controls="panel«Rjiq»2" data-rttab="true">404</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel«Rjiq»0" aria-labelledby="tab«Rjiq»0"><div><div class="sc-bSFBcf iLdyBp"><span class="sc-gahYZc cXitJ">Content type</span><div class="sc-bAehkN iNRAJK">application/json</div></div><div class="sc-blIAwI eKKwxo"><div class="sc-dClGHI fdRrNy"><div class="sc-bbbBoY dKqohl"><button><div class="sc-fYmhhH iNCOCX">Copy</div></button></div><div tabindex="0" class="sc-eVqvcJ kIppRw sc-fhfEft dFvLDb"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"added"</span>: <span class="token string">&quot;2025-02-25 11:59:59&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"author"</span>: <span class="token string">&quot;John Doe&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"id"</span>: <span class="token number">123</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"notes"</span>: <span class="token string">&quot;Here are some notes about the book.&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"title"</span>: <span class="token string">&quot;Title of book&quot;</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel«Rjiq»1" aria-labelledby="tab«Rjiq»1"></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel«Rjiq»2" aria-labelledby="tab«Rjiq»2"></div></div></div></div></div></div><div id="operation/GetAllBooks" data-section-id="operation/GetAllBooks" class="sc-dTvVRJ gHrCVQ"><div data-section-id="operation/GetAllBooks" id="operation/GetAllBooks" class="sc-jJLAfE gkiSyE"><div class="sc-ggWZvA fqkwbU"><h2 class="sc-kNOymR djrIwa"><a class="sc-kcLKEh fRdsOi" href="#operation/GetAllBooks" aria-label="operation/GetAllBooks"></a>Get information about all books in your library.<!-- --> </h2><div class="sc-bfjeOH bjKcsR"><div html="&lt;p&gt;Gets the title, author, notes, and added date for all books.&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw hZVDrH"><p>Gets the title, author, notes, and added date for all books.</p>
+</div></div><div class="sc-ikkVnJ deUlC"><div class="sc-hWgKua dPSGXF"><h5 class="sc-eqYatC sc-gFqXPY czjApA jCoZLr">Authorizations:</h5><svg class="sc-dntSTA FtowP" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-jBaHRL fUkQtw"><span class="sc-iVnIWt knktok"><span class="sc-hqtLyI egvBLr"><i>basic_auth</i></span></span></div></div><div><h3 class="sc-gDzyrw gnFtVc">Responses</h3><div><button class="sc-jIDBmd lkmdtA"><svg class="sc-dntSTA cGxVlA" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-eJvlPh fBhAXU">200<!-- --> </strong><div html="&lt;p&gt;Retrieved all books successfully&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp sc-etsjJW kIppRw bIVjcJ ljKHqG"><p>Retrieved all books successfully</p>
+</div></button></div><div><button class="sc-jIDBmd ifAHvq"><svg class="sc-dntSTA jKYZgc" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-eJvlPh fBhAXU">401<!-- --> </strong><div html="&lt;p&gt;Authentication failed&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp sc-etsjJW kIppRw bIVjcJ ljKHqG"><p>Authentication failed</p>
+</div></button></div></div></div><div class="sc-jwTyAe sc-hjsuWn bDYKKx FFPsr"><div class="sc-eZSpzM jjnszm"><button class="sc-buTqWO iPCVMX"><span type="get" class="sc-fQLpxn dynMBc http-verb get">get</span><span class="sc-jvKoal kZcHWP">/books</span><svg class="sc-dntSTA iuNpUs" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-ecJghI ga-DQLq"><div class="sc-iyBeIh icOxsG"><div html="&lt;p&gt;Production server&lt;/p&gt;
+" class="sc-eVqvcJ sc-fszimp kIppRw hXZWyB"><p>Production server</p>
+</div><div tabindex="0" role="button"><div class="sc-xKhEK dWvHOB"><span>https://ennoia.pythonanywhere.com/api/v1</span>/books</div></div></div><div class="sc-iyBeIh icOxsG"><div html="" class="sc-eVqvcJ sc-fszimp kIppRw hXZWyB"></div><div tabindex="0" role="button"><div class="sc-xKhEK dWvHOB"><span>https://username:password@ennoia.pythonanywhere.com/api/v1</span>/books</div></div></div></div></div><div><h3 class="sc-lgpSej drJHMo"> <!-- -->Response samples<!-- --> </h3><div class="sc-cOpnSz bRPjjS" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="tab«Rjja»0" aria-selected="true" aria-disabled="false" aria-controls="panel«Rjja»0" tabindex="0" data-rttab="true">200</li><li class="tab-error" role="tab" id="tab«Rjja»1" aria-selected="false" aria-disabled="false" aria-controls="panel«Rjja»1" data-rttab="true">401</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel«Rjja»0" aria-labelledby="tab«Rjja»0"><div><div class="sc-bSFBcf iLdyBp"><span class="sc-gahYZc cXitJ">Content type</span><div class="sc-bAehkN iNRAJK">application/json</div></div><div class="sc-blIAwI eKKwxo"><div class="sc-dClGHI fdRrNy"><div class="sc-bbbBoY dKqohl"><button><div class="sc-fYmhhH iNCOCX">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div tabindex="0" class="sc-eVqvcJ kIppRw sc-fhfEft dFvLDb"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"added"</span>: <span class="token string">&quot;2025-02-25 11:59:59&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"author"</span>: <span class="token string">&quot;John Doe&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"id"</span>: <span class="token number">123</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"notes"</span>: <span class="token string">&quot;Here are some notes about the book.&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"title"</span>: <span class="token string">&quot;Title of book&quot;</span></div></li></ul><span class="token punctuation">}</span>,</div></li><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"added"</span>: <span class="token string">&quot;2024-07-30 3:22:11&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"author"</span>: <span class="token string">&quot;John Doe&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"id"</span>: <span class="token number">124</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"notes"</span>: <span class="token string">&quot;Here are some notes about the book.&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"title"</span>: <span class="token string">&quot;Another title of book&quot;</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel«Rjja»1" aria-labelledby="tab«Rjja»1"></div></div></div></div></div></div></div><div class="sc-evkzZa iZqpqg"></div></div></div>
+      <script>
+      const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.1.0","info":{"version":"1.0.0","title":"Ennoia API","contact":{"name":"Jake Tanis","email":"jakktan@gmail.com","url":"https://github.com/seiji-alyosha"},"license":{"name":"MIT","url":"https://github.com/seiji-alyosha/bookshelf_api_docs?tab=MIT-1-ov-file"},"x-logo":{"url":"./Ennoia.svg","altText":"Ennoia logo"}},"externalDocs":{"description":"GitHub","url":"https://github.com/seiji-alyosha/bookshelf_api_docs"},"x-tagGroups":null,"servers":[{"url":"https://ennoia.pythonanywhere.com/api/v1","description":"Production server"},{"url":"https://username:password@ennoia.pythonanywhere.com/api/v1"}],"paths":{"/books/{id}":{"get":{"summary":"Get information about one book.","description":"Gets the title, author, notes, and the added date of a book based on the book id.","operationId":"GetBookInfo","parameters":[{"$ref":"#/components/parameters/id"}],"responses":{"200":{"$ref":"#/components/responses/OneBookSuccess"},"401":{"$ref":"#/components/responses/Unauthorized"},"404":{"$ref":"#/components/responses/NotFound"}},"security":[{"basic_auth":[]}]}},"/books":{"get":{"summary":"Get information about all books in your library.","description":"Gets the title, author, notes, and added date for all books.","operationId":"GetAllBooks","responses":{"200":{"$ref":"#/components/responses/AllBooksSuccess"},"401":{"$ref":"#/components/responses/Unauthorized"}},"security":[{"basic_auth":[]}]}}},"components":{"parameters":{"id":{"name":"id","in":"path","required":true,"description":"The books id.","schema":{"type":"integer"}}},"securitySchemes":{"basic_auth":{"type":"http","scheme":"basic","description":"Basic HTTP authorization. Use your username and password."}},"responses":{"OneBookSuccess":{"description":"Retrieved book successfully","content":{"application/json":{"schema":{"type":"object","properties":{"added":{"type":"string","description":"When the user added the book to their library."},"author":{"type":"string","description":"The author of the book."},"id":{"type":"integer","description":"The book id."},"notes":{"type":"string","description":"Notes that the user entered for the book."},"title":{"type":"string","description":"The title of the book."}}},"examples":{"success":{"summary":"Retrieved book","value":{"added":"2025-02-25 11:59:59","author":"John Doe","id":123,"notes":"Here are some notes about the book.","title":"Title of book"}}}}}},"AllBooksSuccess":{"description":"Retrieved all books successfully","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"added":{"type":"string","description":"When the user added the book to their library."},"author":{"type":"string","description":"The author of the book."},"id":{"type":"integer","description":"The book id."},"notes":{"type":"string","description":"Notes that the user entered for the book."},"title":{"type":"string","description":"The title of the book."}}}},"examples":{"success":{"summary":"Retrieved all books","value":[{"added":"2025-02-25 11:59:59","author":"John Doe","id":123,"notes":"Here are some notes about the book.","title":"Title of book"},{"added":"2024-07-30 3:22:11","author":"John Doe","id":124,"notes":"Here are some notes about the book.","title":"Another title of book"}]}}}}},"Unauthorized":{"description":"Authentication failed","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"An error message that tells users what happened and how to prevent the error."}}},"examples":{"no_auth":{"summary":"No credentials provided","value":{"error":"Please provide a username and a password."}},"invalid_auth":{"summary":"Invalid credentials","value":{"error":"We couldn't find that account. Please try again with a different username and/or password."}}}}}},"NotFound":{"description":"Book not found","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"An error message that tells users what happened and how to prevent the error.","example":"Sorry, we couldn't find a book with that id. Please try with a different id."}}}}}}}}}},"searchIndex":{"store":["operation/GetBookInfo","operation/GetAllBooks"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,0.182,1,0.693,2,0.288]],["description/0",[2,0.379,3,0.171,4,0.171,5,0.171,6,0.171,7,0.171,8,0.171,9,0.651,10,0.651,11,0.651]],["title/1",[0,0.182,2,0.288,12,0.693]],["description/1",[2,0.414,3,0.195,4,0.195,5,0.195,6,0.195,7,0.195,8,0.195]]],"invertedIndex":[["ad",{"_index":7,"title":{},"description":{"0":{},"1":{}}}],["author",{"_index":5,"title":{},"description":{"0":{},"1":{}}}],["base",{"_index":9,"title":{},"description":{"0":{}}}],["book",{"_index":2,"title":{"0":{},"1":{}},"description":{"0":{},"1":{}}}],["books/{id",{"_index":11,"title":{},"description":{"0":{}}}],["date",{"_index":8,"title":{},"description":{"0":{},"1":{}}}],["get",{"_index":3,"title":{},"description":{"0":{},"1":{}}}],["id",{"_index":10,"title":{},"description":{"0":{}}}],["inform",{"_index":0,"title":{"0":{},"1":{}},"description":{}}],["librari",{"_index":12,"title":{"1":{}},"description":{}}],["note",{"_index":6,"title":{},"description":{"0":{},"1":{}}}],["on",{"_index":1,"title":{"0":{}},"description":{}}],["titl",{"_index":4,"title":{},"description":{"0":{},"1":{}}}]],"pipeline":[]}},"options":{"htmlTemplate":"./docs/template.html","theme":{"colors":{"primary":{"main":"#333533"},"text":{"primary":"#333533"}},"typography":{"fontFamily":"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"},"spacing":{"unit":8,"sectionHorizontal":40,"sectionVertical":40},"components":{"buttons":{"borderRadius":"5px"},"panels":{"borderRadius":"5px"}}}}};
+
+      var container = document.getElementById('redoc');
+      Redoc.hydrate(__redoc_state, container);
+
+      </script>
+  </body>
+</html>
