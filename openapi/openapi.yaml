@@ -4,13 +4,13 @@ info:
   title: Bible SuperSearch API Documentation
   contact:
     name: AIC Web Tech
-    url: aicwebtech.com
+    url: https://aicwebtech.com/
   license:
     name: GNU GPL v3.0
-    url: https://github.com/seiji-alyosha/ennoia_api_docs?tab=MIT-1-ov-file
+    url: 
 externalDocs:
-  description: "To install the API on your website, please visit:"
-  url: "http://www.biblesupersearch.com/downloads"
+  description: "To install the API on your website, click here."
+  url: https://www.biblesupersearch.com/downloads
 x-tagGroups: #organizes the defined tags (from the previous section) into a larger category. In the UI, this is the heading above the two endpoint tags.
 servers:
   - url: https://api.biblesupersearch.com
@@ -26,24 +26,22 @@ paths:
         - $ref: "#/components/parameters/search"
         - $ref: "#/components/parameters/request"
         - $ref: "#/components/parameters/bible"
-        - $ref: "#/components/parameters/whole_words
+        - $ref: "#/components/parameters/whole_words"
         - $ref: "#/components/parameters/exact_case"
         - $ref: "#/components/parameters/data_format"
         - $ref: "#/components/parameters/highlight"
         - $ref: "#/components/parameters/highlight_tag"
-        - $ref: "#/components/parameters/keyword_limit"
-        - $ref: "#/components/parameters/markup"
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/page_limit"
         - $ref: "#/components/parameters/page_all"
         - $ref: "#/components/parameters/context"
         - $ref: "#/components/parameters/context_range"
         - $ref: "#/components/parameters/search_type"
-        - $ref: "#/components/parameters/keyword_limit"
-        - $ref: "#/components/parameters/proximity_limit"
-        - $ref: "#/components/parameters/markup"
-        - $ref: "#/components/parameters/parallel_search_error_suppress"
-        - $ref: "#/components/parameters/callback"
+        #- $ref: "#/components/parameters/keyword_limit"
+        #- $ref: "#/components/parameters/proximity_limit"
+        #- $ref: "#/components/parameters/markup"
+        #- $ref: "#/components/parameters/parallel_search_error_suppress"
+        #- $ref: "#/components/parameters/callback"
       responses:
         "200":
           $ref: "#/components/responses/Success"
@@ -80,24 +78,98 @@ components:
       schema:
         type: string
     search:
+      name: search
+      in: query
+      required: false
+      description: "Keyword search (i.e. love, joy, peace, etc.)"
+      schema: 
+        type: string
     request:
+      name: request
+      in: query
+      required: false
+      description: "Receives keywords or passage references."
+      schema:
+        type: string
     bible:
-    whole-words:
+      name: bible
+      in: query
+      required: false
+      description: "Translation of the bible. Can be a string, array, or JSON encoded array."
+      schema: 
+        type: string
+    whole_words:
+      name: whole_words
+      in: query
+      required: false
+      description: "Sets the search and keyword parameters to search for whole words."
+      schema: 
+        type: boolean
     exact_case:
+      name: exact_case
+      in: query
+      description: "Sets the search and keyword parameters to search for exact case."
+      schema: 
+        type: boolean
     data_format:
+      name: data_format
+      in: query
+      description: "Formats the outputed data structure. Parameter values can either be raw/minimal or passage. Raw/minimal formats data verse by verse. Passage formats data by passage."
+      schema: 
+        type: string
     highlight:
+      name: highlight
+      in: query
+      description: "Setting to true will wrap the highlight tag around the keyword."
+      schema: 
+        type: string
     highlight_tag:
+      name: highlight_tag
+      in: query
+      description: "The HTML tag used to highlight keywords."
+      schema: 
+        type: string
     page:
+      name: page
+      in: query
+      description: "The number of the page to show. Default is 1."
+      schema: 
+        type: string
     page_limit:
+      name: page_limit
+      in: query
+      description: "The results per page. Default is 1."
+      schema: 
+        type: integer
     page_all:
+      name: page_all
+      in: query
+      description: "Shows all results. Default is false."
+      schema: 
+        type: boolean
     context:
+      name: context
+      in: query
+      description: "Shows the verses surrounding the given verse. Default is false."
+      schema:
+        type: boolean
     context_range:
+      name: context_range
+      in: query
+      description: "The amount of verses pulled by the context parameter. Default is 5."
+      schema: 
+        type: integer
     search_type:
-    keyword_limit:
-    proximity_limit:
-    markup:
-    parallel_search_error_suppress:
-    callback:
+      name: search_type
+      in: query
+      description:  The type of search when using the keyword search. "and" or "all_words" - searches for verses with the given words. "or" or "any_word"  - seaches for verses mentioning at least one of the given words. "xor" or "one_word" - searches for verses with one of the given words. "two_or_more" - searches for verses with two or more of the given words."
+      schema: 
+        type: string
+    #keyword_limit:
+    #proximity_limit:
+    #markup:
+    #parallel_search_error_suppress:
+    #scallback:
   securitySchemes:
     basic_auth:
       type: http

@@ -5,40 +5,37 @@
     "title": "Bible SuperSearch API Documentation",
     "contact": {
       "name": "AIC Web Tech",
-      "url": "aicwebtech.com"
+      "url": "https://aicwebtech.com/"
     },
     "license": {
       "name": "GNU GPL v3.0",
-      "url": "https://github.com/seiji-alyosha/ennoia_api_docs?tab=MIT-1-ov-file"
+      "url": null
     }
   },
   "servers": [
     {
-      "url": "https://ennoia.pythonanywhere.com/api/v1",
-      "description": "Production server"
-    },
-    {
-      "url": "https://username:password@ennoia.pythonanywhere.com/api/v1"
+      "url": "https://api.biblesupersearch.com",
+      "description": "Bible SuperSearch API"
     }
   ],
   "externalDocs": {
-    "description": "To install the API on your website, please visit:",
-    "url": "http://www.biblesupersearch.com/downloads"
+    "description": "To install the API on your website, click here.",
+    "url": "https://www.biblesupersearch.com/downloads"
   },
   "paths": {
-    "/books/{id}": {
+    "/api": {
       "get": {
-        "summary": "Get information about one book.",
-        "description": "Gets the title, author, notes, and the added date of a book based on the book id.",
-        "operationId": "GetBookInfo",
+        "summary": "Query",
+        "description": "For all queries of Bible information in our database. Includes both keyword searches and passage retrieval.",
+        "operationId": "QueryPath",
         "parameters": [
           {
-            "$ref": "#/components/parameters/id"
+            "$ref": "#/components/parameters/reference"
           }
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/OneBookSuccess"
+            "$ref": "#/components/responses/Success"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -54,7 +51,7 @@
         ]
       }
     },
-    "/books": {
+    "/api/statics": {
       "get": {
         "summary": "Get information about all books in your library.",
         "description": "Gets the title, author, notes, and added date for all books.",
@@ -77,13 +74,13 @@
   },
   "components": {
     "parameters": {
-      "id": {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "The books id.",
+      "reference": {
+        "name": "reference",
+        "in": "query",
+        "required": false,
+        "description": "The passage reference.",
         "schema": {
-          "type": "integer"
+          "type": "string"
         }
       }
     },
@@ -95,8 +92,8 @@
       }
     },
     "responses": {
-      "OneBookSuccess": {
-        "description": "Retrieved book successfully",
+      "Success": {
+        "description": "Successful response.",
         "content": {
           "application/json": {
             "schema": {
