@@ -1,0 +1,6 @@
+name: highlight_tag
+in: query
+description: The HTML tag used to highlight keywords.
+schema:
+  type: string
+  default: b

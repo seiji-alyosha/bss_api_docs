@@ -1,0 +1,7 @@
+name: whole_words
+in: query
+required: false
+description: Sets the search and keyword parameters to search for whole words.
+schema:
+  type: boolean
+  default: false

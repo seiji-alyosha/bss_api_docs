@@ -1,0 +1,6 @@
+name: context
+in: query
+description: Shows the verses surrounding the given verse.
+schema:
+  type: boolean
+  default: false

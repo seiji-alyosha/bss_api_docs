@@ -1,0 +1,7 @@
+name: reference
+in: query
+required: false
+description: The passage reference.
+schema:
+  type: string
+  default: (none)

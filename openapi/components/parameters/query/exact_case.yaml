@@ -1,0 +1,6 @@
+name: exact_case
+in: query
+description: Sets the search and keyword parameters to search for exact case.
+schema:
+  type: boolean
+  default: false

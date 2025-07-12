@@ -1,0 +1,6 @@
+name: highlight
+in: query
+description: Setting to true will wrap the highlight tag around the keyword.
+schema:
+  type: string
+  default: false

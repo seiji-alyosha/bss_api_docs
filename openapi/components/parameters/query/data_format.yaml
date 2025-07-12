@@ -1,0 +1,9 @@
+name: data_format
+in: query
+description: >-
+  Formats the outputed data structure. Parameter values can either be
+  raw/minimal or passage. Raw/minimal formats data verse by verse. Passage
+  formats data by passage.
+schema:
+  type: string
+  default: passage

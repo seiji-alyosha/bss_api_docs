@@ -31,6 +31,63 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/reference"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/request"
+          },
+          {
+            "$ref": "#/components/parameters/bible"
+          },
+          {
+            "$ref": "#/components/parameters/whole_words"
+          },
+          {
+            "$ref": "#/components/parameters/exact_case"
+          },
+          {
+            "$ref": "#/components/parameters/data_format"
+          },
+          {
+            "$ref": "#/components/parameters/highlight"
+          },
+          {
+            "$ref": "#/components/parameters/highlight_tag"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/page_limit"
+          },
+          {
+            "$ref": "#/components/parameters/page_all"
+          },
+          {
+            "$ref": "#/components/parameters/context"
+          },
+          {
+            "$ref": "#/components/parameters/context_range"
+          },
+          {
+            "$ref": "#/components/parameters/search_type"
+          },
+          {
+            "$ref": "#/components/parameters/keyword_limit"
+          },
+          {
+            "$ref": "#/components/parameters/proximity_limit"
+          },
+          {
+            "$ref": "#/components/parameters/markup"
+          },
+          {
+            "$ref": "#/components/parameters/parallel_search_error_suppress"
+          },
+          {
+            "$ref": "#/components/parameters/callback"
           }
         ],
         "responses": {
@@ -43,18 +100,13 @@
           "404": {
             "$ref": "#/components/responses/NotFound"
           }
-        },
-        "security": [
-          {
-            "basic_auth": []
-          }
-        ]
+        }
       }
     },
     "/api/statics": {
       "get": {
-        "summary": "Get information about all books in your library.",
-        "description": "Gets the title, author, notes, and added date for all books.",
+        "summary": "statics",
+        "description": "statics",
         "operationId": "GetAllBooks",
         "responses": {
           "200": {
@@ -80,15 +132,181 @@
         "required": false,
         "description": "The passage reference.",
         "schema": {
-          "type": "string"
+          "type": "string",
+          "default": "(none)"
         }
-      }
-    },
-    "securitySchemes": {
-      "basic_auth": {
-        "type": "http",
-        "scheme": "basic",
-        "description": "Basic HTTP authorization. Use your username and password."
+      },
+      "search": {
+        "name": "search",
+        "in": "query",
+        "description": "Keyword search (i.e. love, joy, peace, etc.)",
+        "schema": {
+          "type": "string",
+          "default": "(none)"
+        }
+      },
+      "request": {
+        "name": "request",
+        "in": "query",
+        "description": "Receives keywords or passage references.",
+        "schema": {
+          "type": "string",
+          "default": "(none)"
+        }
+      },
+      "bible": {
+        "name": "bible",
+        "in": "query",
+        "description": "Translation of the bible. Can be a string, array, or JSON encoded array.",
+        "schema": {
+          "type": "string",
+          "default": "kjv"
+        }
+      },
+      "whole_words": {
+        "name": "whole_words",
+        "in": "query",
+        "required": false,
+        "description": "Sets the search and keyword parameters to search for whole words.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "exact_case": {
+        "name": "exact_case",
+        "in": "query",
+        "description": "Sets the search and keyword parameters to search for exact case.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "data_format": {
+        "name": "data_format",
+        "in": "query",
+        "description": "Formats the outputed data structure. Parameter values can either be raw/minimal or passage. Raw/minimal formats data verse by verse. Passage formats data by passage.",
+        "schema": {
+          "type": "string",
+          "default": "passage"
+        }
+      },
+      "highlight": {
+        "name": "highlight",
+        "in": "query",
+        "description": "Setting to true will wrap the highlight tag around the keyword.",
+        "schema": {
+          "type": "string",
+          "default": false
+        }
+      },
+      "highlight_tag": {
+        "name": "highlight_tag",
+        "in": "query",
+        "description": "The HTML tag used to highlight keywords.",
+        "schema": {
+          "type": "string",
+          "default": "b"
+        }
+      },
+      "page": {
+        "name": "page",
+        "in": "query",
+        "description": "The number of the page to show.",
+        "schema": {
+          "type": "string",
+          "default": 1
+        }
+      },
+      "page_limit": {
+        "name": "page_limit",
+        "in": "query",
+        "description": "The results per page.",
+        "schema": {
+          "type": "integer",
+          "default": 1
+        }
+      },
+      "page_all": {
+        "name": "page_all",
+        "in": "query",
+        "description": "Shows all results.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "context": {
+        "name": "context",
+        "in": "query",
+        "description": "Shows the verses surrounding the given verse.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "context_range": {
+        "name": "context_range",
+        "in": "query",
+        "description": "The amount of verses pulled by the context parameter.",
+        "schema": {
+          "type": "integer",
+          "default": 5
+        }
+      },
+      "search_type": {
+        "name": "search_type",
+        "in": "query",
+        "description": "The type of search when using the keyword search. 'and' or 'all_words' - searches for verses with the given words. 'or' or 'any_word'  - seaches for verses mentioning at least one of the given words. 'xor' or 'one_word' - searches for verses with one of the given words. two_or_more' - searches for verses with two or more of the given words.'",
+        "schema": {
+          "type": "string",
+          "default": "and"
+        }
+      },
+      "keyword_limit": {
+        "name": "keyword_limit",
+        "in": "query",
+        "description": "Sets the minimum amount of keywords for keyword searches.",
+        "schema": {
+          "type": "integer",
+          "default": 5
+        }
+      },
+      "proximity_limit": {
+        "name": "proximity_limit",
+        "in": "query",
+        "description": "Sets the range of verses of allowable verses between keywords. Default is 5.",
+        "schema": {
+          "type": "integer",
+          "default": 5
+        }
+      },
+      "markup": {
+        "name": "markup",
+        "in": "query",
+        "description": "Formats the markup for Strongs numbers or red letters. 'None', or 'raw'. 'raw' returns the markup as stored in the database. {} = srongs numbers, [] = added words, ‹› = red letters (not <>). Default is 5.",
+        "schema": {
+          "type": "string",
+          "default": "none"
+        }
+      },
+      "parallel_search_error_suppress": {
+        "name": "parallel_search_error_suppress",
+        "in": "query",
+        "description": "The 'verses from this Bible have been included for comparison' errors won't show.",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "callback": {
+        "name": "callback",
+        "in": "query",
+        "description": "Name of callback for JSONP.",
+        "schema": {
+          "type": "string",
+          "default": "(none)"
+        }
       }
     },
     "responses": {
@@ -130,6 +348,53 @@
                   "id": 123,
                   "notes": "Here are some notes about the book.",
                   "title": "Title of book"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Authentication failed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "An error message that tells users what happened and how to prevent the error."
+                }
+              }
+            },
+            "examples": {
+              "no_auth": {
+                "summary": "No credentials provided",
+                "value": {
+                  "error": "Please provide a username and a password."
+                }
+              },
+              "invalid_auth": {
+                "summary": "Invalid credentials",
+                "value": {
+                  "error": "We couldn't find that account. Please try again with a different username and/or password."
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Book not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "An error message that tells users what happened and how to prevent the error.",
+                  "example": "Sorry, we couldn't find a book with that id. Please try with a different id."
                 }
               }
             }
@@ -187,53 +452,6 @@
                     "title": "Another title of book"
                   }
                 ]
-              }
-            }
-          }
-        }
-      },
-      "Unauthorized": {
-        "description": "Authentication failed",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "An error message that tells users what happened and how to prevent the error."
-                }
-              }
-            },
-            "examples": {
-              "no_auth": {
-                "summary": "No credentials provided",
-                "value": {
-                  "error": "Please provide a username and a password."
-                }
-              },
-              "invalid_auth": {
-                "summary": "Invalid credentials",
-                "value": {
-                  "error": "We couldn't find that account. Please try again with a different username and/or password."
-                }
-              }
-            }
-          }
-        }
-      },
-      "NotFound": {
-        "description": "Book not found",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "An error message that tells users what happened and how to prevent the error.",
-                  "example": "Sorry, we couldn't find a book with that id. Please try with a different id."
-                }
               }
             }
           }

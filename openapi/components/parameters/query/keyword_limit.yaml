@@ -1,0 +1,6 @@
+name: keyword_limit
+in: query
+description: Sets the minimum amount of keywords for keyword searches.
+schema:
+  type: integer
+  default: 5

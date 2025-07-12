@@ -1,0 +1,6 @@
+name: context_range
+in: query
+description: The amount of verses pulled by the context parameter.
+schema:
+  type: integer
+  default: 5

@@ -1,0 +1,6 @@
+name: page_limit
+in: query
+description: The results per page.
+schema:
+  type: integer
+  default: 1

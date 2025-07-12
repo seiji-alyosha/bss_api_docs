@@ -1,0 +1,11 @@
+name: search_type
+in: query
+description: >-
+  The type of search when using the keyword search. 'and' or 'all_words' -
+  searches for verses with the given words. 'or' or 'any_word'  - seaches for
+  verses mentioning at least one of the given words. 'xor' or 'one_word' -
+  searches for verses with one of the given words. two_or_more' - searches for
+  verses with two or more of the given words.'
+schema:
+  type: string
+  default: and

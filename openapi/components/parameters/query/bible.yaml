@@ -1,0 +1,6 @@
+name: bible
+in: query
+description: Translation of the bible. Can be a string, array, or JSON encoded array.
+schema:
+  type: string
+  default: kjv

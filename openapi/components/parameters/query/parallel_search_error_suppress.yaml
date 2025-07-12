@@ -1,0 +1,8 @@
+name: parallel_search_error_suppress
+in: query
+description: >-
+  The 'verses from this Bible have been included for comparison' errors won't
+  show.
+schema:
+  type: boolean
+  default: false

@@ -1,0 +1,6 @@
+name: page_all
+in: query
+description: Shows all results.
+schema:
+  type: boolean
+  default: false

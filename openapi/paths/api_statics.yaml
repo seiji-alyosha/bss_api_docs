@@ -1,0 +1,11 @@
+get:
+  summary: statics
+  description: statics
+  operationId: GetAllBooks
+  responses:
+    '200':
+      $ref: ../components/responses/AllBooksSuccess.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+  security:
+    - basic_auth: []

@@ -1,0 +1,6 @@
+name: callback
+in: query
+description: Name of callback for JSONP.
+schema:
+  type: string
+  default: (none)

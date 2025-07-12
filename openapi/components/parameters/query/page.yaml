@@ -1,0 +1,6 @@
+name: page
+in: query
+description: The number of the page to show.
+schema:
+  type: string
+  default: 1

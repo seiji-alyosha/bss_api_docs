@@ -1,0 +1,34 @@
+get:
+  summary: Query
+  description: >-
+    For all queries of Bible information in our database. Includes both keyword
+    searches and passage retrieval.
+  operationId: QueryPath
+  parameters:
+    - $ref: ../components/parameters/query/reference.yaml
+    - $ref: ../components/parameters/query/search.yaml
+    - $ref: ../components/parameters/query/request.yaml
+    - $ref: ../components/parameters/query/bible.yaml
+    - $ref: ../components/parameters/query/whole_words.yaml
+    - $ref: ../components/parameters/query/exact_case.yaml
+    - $ref: ../components/parameters/query/data_format.yaml
+    - $ref: ../components/parameters/query/highlight.yaml
+    - $ref: ../components/parameters/query/highlight_tag.yaml
+    - $ref: ../components/parameters/query/page.yaml
+    - $ref: ../components/parameters/query/page_limit.yaml
+    - $ref: ../components/parameters/query/page_all.yaml
+    - $ref: ../components/parameters/query/context.yaml
+    - $ref: ../components/parameters/query/context_range.yaml
+    - $ref: ../components/parameters/query/search_type.yaml
+    - $ref: ../components/parameters/query/keyword_limit.yaml
+    - $ref: ../components/parameters/query/proximity_limit.yaml
+    - $ref: ../components/parameters/query/markup.yaml
+    - $ref: ../components/parameters/query/parallel_search_error_suppress.yaml
+    - $ref: ../components/parameters/query/callback.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/Success.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml

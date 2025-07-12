@@ -1,0 +1,6 @@
+name: proximity_limit
+in: query
+description: Sets the range of verses of allowable verses between keywords. Default is 5.
+schema:
+  type: integer
+  default: 5
