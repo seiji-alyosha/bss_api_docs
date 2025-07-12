@@ -1,6 +1,0 @@
-name: request
-in: query
-description: Receives keywords or passage references.
-schema:
-  type: string
-  default: (none)

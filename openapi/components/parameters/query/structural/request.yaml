@@ -1,0 +1,6 @@
+name: request
+in: query
+description: Receives keywords or passage references. Cannot receive both. If a passage is used, the response format is the same as the response for the reference parameter. If a keyword is used, the response format is the same as the keyword parameter.
+schema:
+  type: string
+  default: (none)
