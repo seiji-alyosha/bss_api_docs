@@ -1,0 +1,16 @@
+type: object
+title: Translation chapter
+description: A chapter object for a given translation. Each chapter object contains a verse object. Chapter objects are numbers in the form of a string.
+
+additionalProperties:
+  $ref: ./chapterVerse.yaml
+example:
+  "63": 
+      "5":
+          id: 14845
+          book: 19
+          chapter: 63
+          verse: 5
+          text: "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:"
+          italics: ""
+          claimed: true

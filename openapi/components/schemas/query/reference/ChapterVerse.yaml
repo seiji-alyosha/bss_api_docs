@@ -1,0 +1,16 @@
+type: object
+title: Chapter verses
+description: A verse object that contains information about a single verse. Chapter verses are numbers in the form of a string.
+
+additionalProperties:
+  $ref: ./verse.yaml
+
+example:
+  "5": 
+    id: 14845
+    book: 19
+    chapter: 63
+    verse: 5
+    text: "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:"
+    italics: ""
+    claimed: true

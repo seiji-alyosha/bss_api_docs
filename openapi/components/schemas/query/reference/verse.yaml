@@ -1,0 +1,30 @@
+title: verse
+type: object
+description: Information for a given verse.
+properties:
+  id:
+    type: integer
+    description: The verse id.
+    example: 14845
+  book: 
+    type: integer
+    description: The book id.
+    example: 19
+  chapter:
+    type: integer
+    description: The chapter number.
+    example: 63
+  verse:
+    type: integer
+    description: The verse number.
+    example: 5
+  text:
+    type: string
+    description: The contents of the verse.
+    example: "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:"
+  italics:
+    type: string
+    description: (in-progress)
+  claimed:
+    type: boolean
+    description: (in-progress)

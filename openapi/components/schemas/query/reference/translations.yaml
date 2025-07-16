@@ -1,0 +1,18 @@
+type: object
+title: Translation
+description: The translation code for the returned verse.
+
+additionalProperties:
+  $ref: ./translationChapter.yaml
+
+example:
+  "kjv":
+      "63": 
+          "5":
+              id: 14845
+              book: 19
+              chapter: 63
+              verse: 5
+              text: "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:"
+              italics: ""
+              claimed: true
