@@ -7,7 +7,7 @@ info:
     url: https://aicwebtech.com/
   license:
     name: GNU GPL v3.0
-    url: null
+    url: https://github.com/seiji-alyosha/bss_api_docs?tab=GPL-.0-1-ov-file.com
 externalDocs:
   description: To install the API on your website, click here.
   url: https://www.biblesupersearch.com/downloads
@@ -18,5 +18,3 @@ servers:
 paths:
   /api:
     $ref: paths/api.yaml
-  /api/statics:
-    $ref: paths/api_statics.yaml

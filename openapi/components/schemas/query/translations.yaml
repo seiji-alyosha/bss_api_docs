@@ -3,7 +3,7 @@ title: Translation
 description: The translation code for the returned verse.
 
 additionalProperties:
-  $ref: ./translationChapter.yaml
+  $ref: ./translation_chapter.yaml
 
 example:
   "kjv":

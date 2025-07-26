@@ -3,7 +3,7 @@ title: Translation chapter
 description: A chapter object for a given translation. Each chapter object contains a verse object. Chapter objects are numbers in the form of a string.
 
 additionalProperties:
-  $ref: ./chapterVerse.yaml
+  $ref: ./chapter_verse.yaml
 example:
   "63": 
       "5":

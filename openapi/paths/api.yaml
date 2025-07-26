@@ -5,26 +5,26 @@ get:
     searches and passage retrieval.
   operationId: QueryPath
   parameters:
-    - $ref: ../components/parameters/query/reference.yaml
-    - $ref: ../components/parameters/query/search.yaml
-    - $ref: ../components/parameters/query/request.yaml
-    - $ref: ../components/parameters/query/bible.yaml
-    - $ref: ../components/parameters/query/whole_words.yaml
-    - $ref: ../components/parameters/query/exact_case.yaml
-    - $ref: ../components/parameters/query/data_format.yaml
-    - $ref: ../components/parameters/query/highlight.yaml
-    - $ref: ../components/parameters/query/highlight_tag.yaml
-    - $ref: ../components/parameters/query/page.yaml
-    - $ref: ../components/parameters/query/page_limit.yaml
-    - $ref: ../components/parameters/query/page_all.yaml
-    - $ref: ../components/parameters/query/context.yaml
-    - $ref: ../components/parameters/query/context_range.yaml
-    - $ref: ../components/parameters/query/search_type.yaml
-    - $ref: ../components/parameters/query/keyword_limit.yaml
-    - $ref: ../components/parameters/query/proximity_limit.yaml
-    - $ref: ../components/parameters/query/markup.yaml
-    - $ref: ../components/parameters/query/parallel_search_error_suppress.yaml
-    - $ref: ../components/parameters/query/callback.yaml
+    - $ref: ../components/parameters/query/structural/reference.yaml
+    - $ref: ../components/parameters/query/structural/search.yaml
+    - $ref: ../components/parameters/query/structural/request.yaml
+    - $ref: ../components/parameters/query/structural/data_format.yaml
+    - $ref: ../components/parameters/query/additional/bible.yaml
+    - $ref: ../components/parameters/query/additional/whole_words.yaml
+    - $ref: ../components/parameters/query/additional/exact_case.yaml
+    - $ref: ../components/parameters/query/additional/highlight.yaml
+    - $ref: ../components/parameters/query/additional/highlight_tag.yaml
+    - $ref: ../components/parameters/query/additional/page.yaml
+    - $ref: ../components/parameters/query/additional/page_limit.yaml
+    - $ref: ../components/parameters/query/additional/page_all.yaml
+    - $ref: ../components/parameters/query/additional/context.yaml
+    - $ref: ../components/parameters/query/additional/context_range.yaml
+    - $ref: ../components/parameters/query/additional/search_type.yaml
+    - $ref: ../components/parameters/query/additional/keyword_limit.yaml
+    - $ref: ../components/parameters/query/additional/proximity_limit.yaml
+    - $ref: ../components/parameters/query/additional/markup.yaml
+    - $ref: ../components/parameters/query/additional/parallel_search_error_suppress.yaml
+    - $ref: ../components/parameters/query/additional/callback.yaml
   responses:
     '200':
       $ref: ../components/responses/Success.yaml
@@ -32,3 +32,4 @@ get:
       $ref: ../components/responses/Unauthorized.yaml
     '404':
       $ref: ../components/responses/NotFound.yaml
+  security: 

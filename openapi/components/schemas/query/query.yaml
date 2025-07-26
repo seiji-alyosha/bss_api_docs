@@ -1,10 +1,6 @@
 type: object
 title: Query response schema
-description: The response schema for the query endpoint. The information changes based on the parameters you enter. The following parameters affect the response schema structure:
-  - reference
-  - search
-  - request
-  - data_format
+description: The response schema for the query endpoint.
 
 properties:
   hash:
@@ -16,20 +12,20 @@ properties:
     description: The purpose of this object is still under investigation.
     example: []
   strongs:
-    type: string
-    description: The contents of this object is still under investigation. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object.
+    type: array
+    description: The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object.
   paging:
     type: object
     description: Returns objects that contain information about the pages of the results. Information such as:
       - Current page of results
       - URL for the first page
       - The search result that starts on the current page
-      - The number of the last page of results
+      - The page number of the last page of results
       - URL for the last page
-      - URLs for all pages of resuls
+      - URLs for all pages of results
       - URL path for the endpoint
       - Search results per page
-      - The number of the last search result for the current page
+      - The number of search results for the current page
       - Total number of search results
     example: '"current_page": 2,
         "first_page_url": "https://api.biblesupersearch.com/api?page=1",
@@ -117,3 +113,26 @@ properties:
         "per_page": 30,
         "to": 60,
         "total": 4118"'
+  errors:
+    type: array
+    description: If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs.
+    example: '"errors": [
+      "Cannot retrieve multiple books at once"
+    ]'
+  error_level:
+    type: integer
+    description: Indicates the type of error that occurred. "0" - no error; "1" or "2" - reserved for future use; "3" - non-fatal error; "4" - fatal error.
+    example: 4
+  results:
+    type: array
+    description: Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter:
+      - **passage** (default): Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.
+      - **raw**: Returns verse data and less information about books and chapters.
+    items:
+      oneOf: 
+      - $ref: ./query_results_passage.yaml
+      - $ref: ./query_results_raw.yaml
+      discriminator:
+        propertyName: data_format
+
+    

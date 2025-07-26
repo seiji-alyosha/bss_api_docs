@@ -1,0 +1,15 @@
+type: object
+title: Results (passage)
+description: Lists information about the books, chapters, and verses related to the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results. 
+
+properties:
+  book_id:
+  book_name:
+  book_short:
+  book_raw:
+  chapter_verse:
+  chapter_verse_raw:
+  verse_index:
+  verses:
+  verses_count:
+  
