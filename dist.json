@@ -9,7 +9,7 @@
     },
     "license": {
       "name": "GNU GPL v3.0",
-      "url": null
+      "url": "https://github.com/seiji-alyosha/bss_api_docs?tab=GPL-.0-1-ov-file.com"
     }
   },
   "servers": [
@@ -39,6 +39,9 @@
             "$ref": "#/components/parameters/request"
           },
           {
+            "$ref": "#/components/parameters/data_format"
+          },
+          {
             "$ref": "#/components/parameters/bible"
           },
           {
@@ -46,9 +49,6 @@
           },
           {
             "$ref": "#/components/parameters/exact_case"
-          },
-          {
-            "$ref": "#/components/parameters/data_format"
           },
           {
             "$ref": "#/components/parameters/highlight"
@@ -100,27 +100,8 @@
           "404": {
             "$ref": "#/components/responses/NotFound"
           }
-        }
-      }
-    },
-    "/api/statics": {
-      "get": {
-        "summary": "statics",
-        "description": "statics",
-        "operationId": "GetAllBooks",
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/AllBooksSuccess"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          }
         },
-        "security": [
-          {
-            "basic_auth": []
-          }
-        ]
+        "security": null
       }
     }
   },
@@ -148,10 +129,19 @@
       "request": {
         "name": "request",
         "in": "query",
-        "description": "Receives keywords or passage references.",
+        "description": "Receives keywords or passage references. Cannot receive both. If a passage is used, the response format is the same as the response for the reference parameter. If a keyword is used, the response format is the same as the keyword parameter.",
         "schema": {
           "type": "string",
           "default": "(none)"
+        }
+      },
+      "data_format": {
+        "name": "data_format",
+        "in": "query",
+        "description": "Formats the outputed data structure. Parameter values can either be raw/minimal or passage. Raw/minimal formats data verse by verse. Passage formats data by passage.",
+        "schema": {
+          "type": "string",
+          "default": "passage"
         }
       },
       "bible": {
@@ -180,15 +170,6 @@
         "schema": {
           "type": "boolean",
           "default": false
-        }
-      },
-      "data_format": {
-        "name": "data_format",
-        "in": "query",
-        "description": "Formats the outputed data structure. Parameter values can either be raw/minimal or passage. Raw/minimal formats data verse by verse. Passage formats data by passage.",
-        "schema": {
-          "type": "string",
-          "default": "passage"
         }
       },
       "highlight": {
@@ -309,35 +290,330 @@
         }
       }
     },
+    "schemas": {
+      "verse_index_chapter": {
+        "title": "Verse index chapter",
+        "type": "array",
+        "description": "The verse numbers for the given chapter in the search. The verses are in integer format.",
+        "example": "\"63\": [ 1, 2, 3 ]"
+      },
+      "verse": {
+        "title": "verse",
+        "type": "object",
+        "description": "Information for a given verse.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The verse id.",
+            "example": 14845
+          },
+          "book": {
+            "type": "integer",
+            "description": "The book id.",
+            "example": 19
+          },
+          "chapter": {
+            "type": "integer",
+            "description": "The chapter number.",
+            "example": 63
+          },
+          "verse": {
+            "type": "integer",
+            "description": "The verse number.",
+            "example": 5
+          },
+          "text": {
+            "type": "string",
+            "description": "The contents of the verse.",
+            "example": "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:"
+          },
+          "italics": {
+            "type": "string",
+            "description": "(in-progress)"
+          },
+          "claimed": {
+            "type": "boolean",
+            "description": "(in-progress)"
+          }
+        }
+      },
+      "chapter_verse": {
+        "type": "object",
+        "title": "Chapter verses",
+        "description": "A verse object that contains information about a single verse. Chapter verses are numbers in the form of a string.",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/verse"
+        },
+        "example": {
+          "5": {
+            "id": 14845,
+            "book": 19,
+            "chapter": 63,
+            "verse": 5,
+            "text": "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:",
+            "italics": "",
+            "claimed": true
+          }
+        }
+      },
+      "translation_chapter": {
+        "type": "object",
+        "title": "Translation chapter",
+        "description": "A chapter object for a given translation. Each chapter object contains a verse object. Chapter objects are numbers in the form of a string.",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/chapter_verse"
+        },
+        "example": {
+          "63": {
+            "5": {
+              "id": 14845,
+              "book": 19,
+              "chapter": 63,
+              "verse": 5,
+              "text": "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:",
+              "italics": "",
+              "claimed": true
+            }
+          }
+        }
+      },
+      "nav": {
+        "title": "nav",
+        "type": "object",
+        "description": "Contains metadata for navigating multiple verses. Only applicable when searching for multiple verses.",
+        "properties": {
+          "prev_book": {
+            "type": "string",
+            "description": "The previous book."
+          },
+          "next_book": {
+            "type": "string",
+            "description": "The next book."
+          },
+          "next_chapter": {
+            "type": "string",
+            "description": "For the next chapter."
+          },
+          "ncb_name": {
+            "type": "string",
+            "description": "Next chapter book name. For the name of the ncb."
+          },
+          "prev_chapter": {
+            "type": "string",
+            "description": "For the previous chapter of the book."
+          },
+          "pcb_name": {
+            "type": "string",
+            "description": "Previous chapter book name. For the name of the pcb."
+          },
+          "cur_chapter": {
+            "type": "string",
+            "description": "For the name of the current chapter of the book."
+          },
+          "ccb_name": {
+            "type": "string",
+            "description": "Current chapter book name. Used for the name of the ccb."
+          },
+          "ncb": {
+            "type": "integer",
+            "description": "Next chapter book id. Used to identify the book of the next chapter of the search entry."
+          },
+          "ncc": {
+            "type": "integer",
+            "description": "Next chapter chapter id. Used to identify the chapter for the next chapter of the search entry."
+          },
+          "pcb": {
+            "type": "integer",
+            "description": "Previous chapter book id. Used to identify the book for the previous chapter of the search entry."
+          },
+          "pcc": {
+            "type": "integer",
+            "description": "Previous chapter chapter id. Used to identify the chapter for the previous chapter of the search entry."
+          },
+          "ccb": {
+            "type": "integer",
+            "description": "Current chapter book id. Used to identify the book of the search entry."
+          },
+          "ccc": {
+            "type": "integer",
+            "description": "Current chapter chapter id. Used to identify the chapter of the search entry."
+          },
+          "nb": {
+            "type": "integer",
+            "description": "Book id for the next book."
+          },
+          "pb": {
+            "type": "integer",
+            "description": "Book id for the previous book."
+          }
+        },
+        "example": "'nav': { 'prev_book': 'Job', 'next_book': 'Proverbs', 'next_chapter': 'Psalms 64', 'ncb_name': 'Psalms', 'prev_chapter': 'Psalms 62', 'pcb_name': 'Psalms', 'cur_chapter': 'Psalms 63', 'ccb_name': 'Psalms', 'ncb': 19, 'ncc': 64, 'pcb': 19, 'pcc': 62, 'ccb': 19, 'ccc': 63, 'nb': 20, 'pb': 18, }"
+      },
+      "query_results_passage": {
+        "type": "object",
+        "title": "Results (passage)",
+        "description": "Lists information about the books, chapters, and verses related to the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results.",
+        "properties": {
+          "book_id": {
+            "type": "integer",
+            "description": "The ID of the book.",
+            "example": 19
+          },
+          "book_name": {
+            "type": "string",
+            "description": "The name of the book.",
+            "example": "Psalms"
+          },
+          "book_short": {
+            "type": "string",
+            "description": "A shortened name for the book.",
+            "example": "Ps"
+          },
+          "book_raw": {
+            "type": "string",
+            "description": "The name entered by the user for the name of the book.",
+            "example": "Psa"
+          },
+          "chapter_verse": {
+            "type": "string",
+            "description": "The chapter and verse.",
+            "example": "63:1"
+          },
+          "chapter_verse_raw": {
+            "type": "string",
+            "description": "The chapter and verse entered by the user.",
+            "example": "63:1"
+          },
+          "verse_index": {
+            "type": "object",
+            "description": "Contains arrays of each chapter in the search.",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/verse_index_chapter"
+            },
+            "example": "'verse_index': { '63': [ 1 ] }"
+          },
+          "verses": {
+            "type": "object",
+            "description": "Details about the searched verses in passage format.",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/translation_chapter"
+            },
+            "example": {
+              "kjv": {
+                "63": [
+                  1
+                ]
+              }
+            }
+          },
+          "verses_count": {
+            "type": "integer",
+            "description": "The amount of verses searched for.",
+            "example": 1
+          },
+          "single_verse": {
+            "type": "boolean",
+            "description": "Shows if the user searched for one verse or not.",
+            "example": true
+          },
+          "nav": {
+            "$ref": "#/components/schemas/nav"
+          }
+        }
+      },
+      "translation_verse": {
+        "title": "Translation verse",
+        "type": "array",
+        "description": "When using the 'raw' data format, the results object displays verse information for a given translation. This differs from the 'passage' format, which gives a chapter object and a verse object that holds the verse information. The results object for 'raw' searches only displays arrays of verse information for the translation specified in the search.",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/verse"
+        },
+        "example": {
+          "kjv": {
+            "id": 14845,
+            "book": 19,
+            "chapter": 63,
+            "verse": 5,
+            "text": "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:",
+            "italics": "",
+            "claimed": true
+          }
+        }
+      },
+      "query_results_raw": {
+        "type": "object",
+        "title": "Results (raw)",
+        "description": "Lists verse information based on the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results.",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/translation_verse"
+        }
+      },
+      "query": {
+        "type": "object",
+        "title": "Query response schema",
+        "description": "The response schema for the query endpoint.",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "A hash code for the endpoint.",
+            "example": "prxqqipbx1"
+          },
+          "disambiguation": {
+            "type": "array",
+            "description": "The purpose of this object is still under investigation.",
+            "example": []
+          },
+          "strongs": {
+            "type": "array",
+            "description": "The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object."
+          },
+          "paging": {
+            "type": "object",
+            "description": "Returns objects that contain information about the pages of the results. Information such as - Current page of results - URL for the first page - The search result that starts on the current page - The page number of the last page of results - URL for the last page - URLs for all pages of results - URL path for the endpoint - Search results per page - The number of search results for the current page - Total number of search results",
+            "example": "\"current_page\": 2, \"first_page_url\": \"https://api.biblesupersearch.com/api?page=1\", \"from\": 31, \"last_page\": 138, \"last_page_url\": \"https://api.biblesupersearch.com/api?page=138\", \"links\": [ { \"url\": \"https://api.biblesupersearch.com/api?page=1\", \"label\": \"&laquo; Previous\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=1\", \"label\": \"1\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=2\", \"label\": \"2\", \"active\": true }, { \"url\": \"https://api.biblesupersearch.com/api?page=3\", \"label\": \"3\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=4\", \"label\": \"4\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=5\", \"label\": \"5\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=6\", \"label\": \"6\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=7\", \"label\": \"7\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=8\", \"label\": \"8\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=9\", \"label\": \"9\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=10\", \"label\": \"10\", \"active\": false }, { \"url\": null, \"label\": \"...\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=137\", \"label\": \"137\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=138\", \"label\": \"138\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=3\", \"label\": \"Next &raquo;\", \"active\": false } ], \"path\": \"https://api.biblesupersearch.com/api\", \"per_page\": 30, \"to\": 60, \"total\": 4118\""
+          },
+          "errors": {
+            "type": "array",
+            "description": "If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs.",
+            "example": "\"errors\": [ \"Cannot retrieve multiple books at once\" ]"
+          },
+          "error_level": {
+            "type": "integer",
+            "description": "Indicates the type of error that occurred. \"0\" - no error; \"1\" or \"2\" - reserved for future use; \"3\" - non-fatal error; \"4\" - fatal error.",
+            "example": 4
+          },
+          "results": {
+            "type": "array",
+            "description": "Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter:/ - **passage** (default):/ Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object. - **raw**:/ Returns verse data and less information about books and chapters.",
+            "oneOf": [
+              {
+                "title": "Results (passage)",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/query_results_passage"
+                }
+              },
+              {
+                "title": "Results (raw)",
+                "type": "object",
+                "description": "Results (raw)",
+                "$ref": "#/components/schemas/query_results_raw"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "data_format"
+            }
+          }
+        }
+      }
+    },
     "responses": {
       "Success": {
         "description": "Successful response.",
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "added": {
-                  "type": "string",
-                  "description": "When the user added the book to their library."
-                },
-                "author": {
-                  "type": "string",
-                  "description": "The author of the book."
-                },
-                "id": {
-                  "type": "integer",
-                  "description": "The book id."
-                },
-                "notes": {
-                  "type": "string",
-                  "description": "Notes that the user entered for the book."
-                },
-                "title": {
-                  "type": "string",
-                  "description": "The title of the book."
-                }
-              }
+              "$ref": "#/components/schemas/query"
             },
             "examples": {
               "success": {
@@ -396,62 +672,6 @@
                   "description": "An error message that tells users what happened and how to prevent the error.",
                   "example": "Sorry, we couldn't find a book with that id. Please try with a different id."
                 }
-              }
-            }
-          }
-        }
-      },
-      "AllBooksSuccess": {
-        "description": "Retrieved all books successfully",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "added": {
-                    "type": "string",
-                    "description": "When the user added the book to their library."
-                  },
-                  "author": {
-                    "type": "string",
-                    "description": "The author of the book."
-                  },
-                  "id": {
-                    "type": "integer",
-                    "description": "The book id."
-                  },
-                  "notes": {
-                    "type": "string",
-                    "description": "Notes that the user entered for the book."
-                  },
-                  "title": {
-                    "type": "string",
-                    "description": "The title of the book."
-                  }
-                }
-              }
-            },
-            "examples": {
-              "success": {
-                "summary": "Retrieved all books",
-                "value": [
-                  {
-                    "added": "2025-02-25 11:59:59",
-                    "author": "John Doe",
-                    "id": 123,
-                    "notes": "Here are some notes about the book.",
-                    "title": "Title of book"
-                  },
-                  {
-                    "added": "2024-07-30 3:22:11",
-                    "author": "John Doe",
-                    "id": 124,
-                    "notes": "Here are some notes about the book.",
-                    "title": "Another title of book"
-                  }
-                ]
               }
             }
           }

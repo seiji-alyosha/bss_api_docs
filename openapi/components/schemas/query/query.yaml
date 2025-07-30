@@ -16,7 +16,7 @@ properties:
     description: The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object.
   paging:
     type: object
-    description: Returns objects that contain information about the pages of the results. Information such as:
+    description: Returns objects that contain information about the pages of the results. Information such as
       - Current page of results
       - URL for the first page
       - The search result that starts on the current page
@@ -125,14 +125,19 @@ properties:
     example: 4
   results:
     type: array
-    description: Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter:
-      - **passage** (default): Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.
-      - **raw**: Returns verse data and less information about books and chapters.
-    items:
-      oneOf: 
-      - $ref: ./query_results_passage.yaml
-      - $ref: ./query_results_raw.yaml
-      discriminator:
+    description: Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter:/
+      - **passage** (default):/ Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.
+      - **raw**:/ Returns verse data and less information about books and chapters.
+    oneOf: 
+      - title: Results (passage)
+        type: array
+        items:
+          $ref: ./query_results_passage.yaml
+      - title: Results (raw)
+        type: object
+        description: Results (raw)
+        $ref: ./query_results_raw.yaml
+    discriminator:
         propertyName: data_format
 
     

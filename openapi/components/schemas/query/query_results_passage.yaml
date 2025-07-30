@@ -1,6 +1,6 @@
 type: object
 title: Results (passage)
-description: Lists information about the books, chapters, and verses related to the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results. 
+description: Lists information about the books, chapters, and verses related to the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results.
 
 properties:
   book_id:
@@ -31,7 +31,7 @@ properties:
     type: object
     description: Contains arrays of each chapter in the search.
     additionalProperties: 
-      - $ref: ./verse_index_chapter.yaml
+      $ref: ./verse_index_chapter.yaml
 
     example: "'verse_index': {
       '63': [
@@ -43,26 +43,21 @@ properties:
     type: object
     description: Details about the searched verses in passage format.
     additionalProperties: 
-      - $ref: ./translation_chapter.yaml
+      $ref: ./translation_chapter.yaml
 
-    example: "'verses': {
+    example:
       'kjv': {
-        '63': {
-          '1': {
-            ...
-          }
-        }
-      }"
+        '63': [1]
+      }
   verses_count:
     type: integer
     description: The amount of verses searched for.
-    exmaple: 1
+    example: 1
 
   single_verse:
     type: boolean
     description: "Shows if the user searched for one verse or not."
     example: true
   nav:
-    items:
-      - $ref: ./nav.yaml
+    $ref: ./nav.yaml
   

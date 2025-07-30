@@ -1,0 +1,16 @@
+title: Translation verse
+type: array
+description: "When using the 'raw' data format, the results object displays verse information for a given translation. This differs from the 'passage' format, which gives a chapter object and a verse object that holds the verse information. The results object for 'raw' searches only displays arrays of verse information for the translation specified in the search."
+
+additionalProperties:
+  $ref: ./verse.yaml
+
+example:
+  "kjv": 
+    id: 14845
+    book: 19
+    chapter: 63
+    verse: 5
+    text: "My soul shall be satisfied as with marrow and fatness; and my mouth shall praise thee with joyful lips:"
+    italics: ""
+    claimed: true

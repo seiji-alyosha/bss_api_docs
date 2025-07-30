@@ -1,9 +1,9 @@
 title: Verse index chapter
 type: array
-definition: The verse numbers for the given chapter in the search. The verses are in integer format.
+description: The verse numbers for the given chapter in the search. The verses are in integer format.
 
 example: '"63": [
   1,
   2,
   3
-]''
+]'

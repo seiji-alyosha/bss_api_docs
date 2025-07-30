@@ -5,13 +5,13 @@ description: "Contains metadata for navigating multiple verses. Only applicable 
 properties:
   prev_book:
     type: string
-    description: "For navigating to the book previous to the previous book."
+    description: "The previous book."
   next_book:
     type: string
-    description: "For the next book after the previous book."
+    description: "The next book."
   next_chapter:
     type: string
-    description: "For the next chapter of the previous book."
+    description: "For the next chapter."
   ncb_name:
     type: string
     description: "Next chapter book name. For the name of the ncb."
@@ -38,7 +38,7 @@ properties:
     description: "Previous chapter book id. Used to identify the book for the previous chapter of the search entry."
   pcc:
     type: integer
-    definition: "Previous chapter chapter id. Used to identify the chapter for the previous chapter of the search entry."
+    description: "Previous chapter chapter id. Used to identify the chapter for the previous chapter of the search entry."
   ccb:
     type: integer
     description: "Current chapter book id. Used to identify the book of the search entry."
