@@ -1,0 +1,74 @@
+title: nav
+type: object
+description: "Contains metadata for navigating multiple verses. Only applicable when searching for multiple verses."
+
+properties:
+  prev_book:
+    type: string
+    description: "For navigating to the book previous to the previous book."
+  next_book:
+    type: string
+    description: "For the next book after the previous book."
+  next_chapter:
+    type: string
+    description: "For the next chapter of the previous book."
+  ncb_name:
+    type: string
+    description: "Next chapter book name. For the name of the ncb."
+  prev_chapter:
+    type: string
+    description: "For the previous chapter of the book."
+  pcb_name: 
+    type: string
+    description: "Previous chapter book name. For the name of the pcb."
+  cur_chapter:
+    type: string
+    description: "For the name of the current chapter of the book."
+  ccb_name:
+    type: string
+    description: "Current chapter book name. Used for the name of the ccb."
+  ncb:
+    type: integer
+    description: "Next chapter book id. Used to identify the book of the next chapter of the search entry."
+  ncc:
+    type: integer
+    description: "Next chapter chapter id. Used to identify the chapter for the next chapter of the search entry."
+  pcb:
+    type: integer
+    description: "Previous chapter book id. Used to identify the book for the previous chapter of the search entry."
+  pcc:
+    type: integer
+    definition: "Previous chapter chapter id. Used to identify the chapter for the previous chapter of the search entry."
+  ccb:
+    type: integer
+    description: "Current chapter book id. Used to identify the book of the search entry."
+  ccc:
+    type: integer
+    description: "Current chapter chapter id. Used to identify the chapter of the search entry."
+  nb:
+    type: integer
+    description: "Book id for the next book."
+  pb: 
+    type: integer
+    description: "Book id for the previous book."
+
+
+
+example: "'nav': {
+  'prev_book': 'Job',
+  'next_book': 'Proverbs',
+  'next_chapter': 'Psalms 64',
+  'ncb_name': 'Psalms',
+  'prev_chapter': 'Psalms 62',
+  'pcb_name': 'Psalms',
+  'cur_chapter': 'Psalms 63',
+  'ccb_name': 'Psalms',
+  'ncb': 19,
+  'ncc': 64,
+  'pcb': 19,
+  'pcc': 62,
+  'ccb': 19,
+  'ccc': 63,
+  'nb': 20,
+  'pb': 18,
+}"

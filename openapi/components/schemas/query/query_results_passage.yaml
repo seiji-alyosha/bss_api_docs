@@ -4,12 +4,65 @@ description: Lists information about the books, chapters, and verses related to 
 
 properties:
   book_id:
+    type: integer
+    description: The ID of the book.
+    example: 19
   book_name:
+    type: string
+    description: The name of the book.
+    example: "Psalms"
   book_short:
+    type: string
+    description: A shortened name for the book.
+    example: "Ps"
   book_raw:
+    type: string
+    description: The name entered by the user for the name of the book.
+    example: "Psa"
   chapter_verse:
+    type: string
+    description: The chapter and verse.
+    example: "63:1"
   chapter_verse_raw:
+    type: string
+    description: The chapter and verse entered by the user.
+    example: "63:1"
   verse_index:
+    type: object
+    description: Contains arrays of each chapter in the search.
+    additionalProperties: 
+      - $ref: ./verse_index_chapter.yaml
+
+    example: "'verse_index': {
+      '63': [
+        1
+      ]
+    }"
+
   verses:
+    type: object
+    description: Details about the searched verses in passage format.
+    additionalProperties: 
+      - $ref: ./translation_chapter.yaml
+
+    example: "'verses': {
+      'kjv': {
+        '63': {
+          '1': {
+            ...
+          }
+        }
+      }"
   verses_count:
+    type: integer
+    description: The amount of verses searched for.
+    exmaple: 1
+
+  single_verse:
+    type: boolean
+    description: "Shows if the user searched for one verse or not."
+    example: true
+  nav:
+    items:
+      - $ref: ./nav.yaml
   
