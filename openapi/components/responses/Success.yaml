@@ -1,14 +1,194 @@
 description: Successful response.
+
 content:
   application/json:
     schema:
       $ref: ../schemas/query/query.yaml
     examples:
-      success:
-        summary: Retrieved book
+      reference_passage:
+        summary: Reference (passage)
+        description: Response for a reference query in a **passage** `data_format` (e.g. Psalms63:1-2).
+        value: 
+            hash: "pgvu7cuok3"
+            disambiguation: []
+            strongs: []
+            paging: []
+            errors: []
+            error_level: 0
+            results:
+              - book_id: 19
+                book_name: "Psalms"
+                book_short: "Ps"
+                book_raw: "Psalm"
+                chapter_verse: "63:1 - 2"
+                chapter_verse_raw: null
+                verse_index:
+                  "63": [1, 2]                      
+                verses:
+                  kjv:
+                    "63":
+                      "1":
+                        id: 14841
+                        book: 19
+                        chapter: 63
+                        verse: 1
+                        text: "¶ A Psalm of David, when he was in the wilderness of Judah. O God, thou art my God; early will I seek thee: my soul thirsteth for thee, my flesh longeth for thee in a dry and thirsty land, where no water is;"
+                        italics: ""
+                        claimed: true
+                      "2":
+                        id: 14842
+                        book: 19
+                        chapter: 63
+                        verse: 2
+                        text: "To see thy power and thy glory, so as I have seen thee in the sanctuary."
+                        italics: ""
+                        claimed: true
+                verses_count: 2
+                single_verse: false
+                nav: 
+                  prev_book: "Job"
+                  next_book: "Proverbs"
+                  next_chapter: "Psalms 64"
+                  ncb_name: "Psalms"
+                  prev_chapter: "Psalms 62"
+                  pcb_name: "Psalms"
+                  curr_chapter: "Psalms 63"
+                  ccb_name: "Psalms"
+                  ncb: 19
+                  ncc: 64
+                  pcb: 19
+                  pcc: 62
+                  ccb: 19
+                  ccc: 63
+                  nb: 20
+                  pb: 18  
+      reference_raw:
+        summary: Reference (raw)
+        description: Response for a reference query in a **raw** `data_format` (e.g. Psalms63:1-2).
         value:
-          added: '2025-02-25 11:59:59'
-          author: John Doe
-          id: 123
-          notes: Here are some notes about the book.
-          title: Title of book
+            hash: "pgvu7cuok3"
+            disambiguation: []
+            strongs: []
+            paging: []
+            errors: []
+            error_level: 0
+            results:
+              "kjv":
+                - id: 14841
+                  book: 19
+                  chapter: 63
+                  verse: 1
+                  text: "¶ A Psalm of David, when he was in the wilderness of Judah. O God, thou art my God; early will I seek thee: my soul thirsteth for thee, my flesh longeth for thee in a dry and thirsty land, where no water is;"
+                  italics: ""
+                  claimed: true
+                - id: 14842
+                  book: 19
+                  chapter: 63
+                  verse: 2
+                  text: "To see thy power and thy glory, so as I have seen thee in the sanctuary."
+                  italics: ""
+                  claimed: true
+      search_passage:
+        summary: Search (passage)
+        description: Response for a search query in a **passage** `data_format` (e.g. Peace).
+        value: 
+          hash: "573us0u6sh"
+          disambiguation: []
+          strongs: []
+          paging:
+            current_page: 1
+            first_page_url: "https://api.biblesupersearch.com/api?page=1"
+            from: 1
+            last_page: 14
+            last_page_url: "https://api.biblesupersearch.com/api?page=14"
+            links:
+              - url: null
+                label: "&laquo; Previous"
+                active: false
+              - url: "https://api.biblesupersearch.com/api?page=1"
+                label: "1"
+                active: true
+              - url: null
+                label: "..."
+                active: false
+              - url: "https://api.biblesupersearch.com/api?page=2"
+                label: "Next &raquo;"
+                active: false
+            path: "https://api.biblesupersearch.com/api"
+            per_page: 30
+            to: 30
+            total: 420
+          errors: []
+          error_level: 0
+          results:
+            - book_id: 1
+              book_name: "Genesis"
+              book_short: "gen"
+              book_raw: null
+              chapter_verse: "15:15"
+              chapter_verse_raw: "15:15"
+              verse_index:
+                "15": [15]                      
+              verses:
+                kjv:
+                  "15":
+                    "15":
+                      id: 376
+                      book: 1
+                      chapter: 15
+                      verse: 15
+                      text: "And thou shalt go to thy fathers in peace; thou shalt be buried in a good old age."
+                      italics: ""
+                      claimed: true
+              verses_count: 1
+              single_verse: true
+              nav: []
+      
+      search_raw:
+        summary: Search (raw)
+        description: Response for a search query in a **raw** `data_format` (e.g. Peace).
+        value: 
+          hash: "owbc87niaf"
+          disambiguation: []
+          strongs: []
+          paging:
+            current_page: 1
+            first_page_url: "https://api.biblesupersearch.com/api?page=1"
+            from: 1
+            last_page: 14
+            last_page_url: "https://api.biblesupersearch.com/api?page=14"
+            links:
+              - url: null
+                label: "&laquo; Previous"
+                active: false
+              - url: "https://api.biblesupersearch.com/api?page=1"
+                label: "1"
+                active: true
+              - url: null
+                label: "..."
+                active: false
+              - url: "https://api.biblesupersearch.com/api?page=2"
+                label: "Next &raquo;"
+                active: false
+            path: "https://api.biblesupersearch.com/api"
+            per_page: 30
+            to: 30
+            total: 420
+          errors: []
+          error_level: 0
+          results:
+            kjv:
+              - id: 376
+                book: 1
+                chapter: 15
+                verse: 15
+                text: "And thou shalt go to thy fathers in peace; thou shalt be buried in a good old age."
+                italics: ""
+              - id: 613
+                book: 1
+                chapter: 24
+                verse: 21
+                text: "And the man wondering at her held his peace, to wit whether the LORD had made his journey prosperous or not."
+                italics: ""
+
+

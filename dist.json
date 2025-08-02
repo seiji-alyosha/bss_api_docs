@@ -451,7 +451,6 @@
       },
       "query_results_passage": {
         "type": "object",
-        "title": "Results (passage)",
         "description": "Lists information about the books, chapters, and verses related to the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results.",
         "properties": {
           "book_id": {
@@ -524,12 +523,12 @@
       "translation_verse": {
         "title": "Translation verse",
         "type": "array",
-        "description": "When using the 'raw' data format, the results object displays verse information for a given translation. This differs from the 'passage' format, which gives a chapter object and a verse object that holds the verse information. The results object for 'raw' searches only displays arrays of verse information for the translation specified in the search.",
-        "additionalProperties": {
+        "description": "When using the 'raw' data format, the results object displays verse information for a given translation. This differs from the 'passage' format, which gives a chapter object and a verse object that holds the verse information. The results object for 'raw' searches only display arrays of verse information for the translation specified in the search.",
+        "items": {
           "$ref": "#/components/schemas/verse"
         },
-        "example": {
-          "kjv": {
+        "example": [
+          {
             "id": 14845,
             "book": 19,
             "chapter": 63,
@@ -538,11 +537,10 @@
             "italics": "",
             "claimed": true
           }
-        }
+        ]
       },
       "query_results_raw": {
         "type": "object",
-        "title": "Results (raw)",
         "description": "Lists verse information based on the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results.",
         "additionalProperties": {
           "$ref": "#/components/schemas/translation_verse"
@@ -555,13 +553,11 @@
         "properties": {
           "hash": {
             "type": "string",
-            "description": "A hash code for the endpoint.",
-            "example": "prxqqipbx1"
+            "description": "A hash code for the endpoint."
           },
           "disambiguation": {
             "type": "array",
-            "description": "The purpose of this object is still under investigation.",
-            "example": []
+            "description": "The purpose of this object is still under investigation."
           },
           "strongs": {
             "type": "array",
@@ -569,40 +565,32 @@
           },
           "paging": {
             "type": "object",
-            "description": "Returns objects that contain information about the pages of the results. Information such as - Current page of results - URL for the first page - The search result that starts on the current page - The page number of the last page of results - URL for the last page - URLs for all pages of results - URL path for the endpoint - Search results per page - The number of search results for the current page - Total number of search results",
-            "example": "\"current_page\": 2, \"first_page_url\": \"https://api.biblesupersearch.com/api?page=1\", \"from\": 31, \"last_page\": 138, \"last_page_url\": \"https://api.biblesupersearch.com/api?page=138\", \"links\": [ { \"url\": \"https://api.biblesupersearch.com/api?page=1\", \"label\": \"&laquo; Previous\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=1\", \"label\": \"1\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=2\", \"label\": \"2\", \"active\": true }, { \"url\": \"https://api.biblesupersearch.com/api?page=3\", \"label\": \"3\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=4\", \"label\": \"4\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=5\", \"label\": \"5\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=6\", \"label\": \"6\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=7\", \"label\": \"7\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=8\", \"label\": \"8\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=9\", \"label\": \"9\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=10\", \"label\": \"10\", \"active\": false }, { \"url\": null, \"label\": \"...\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=137\", \"label\": \"137\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=138\", \"label\": \"138\", \"active\": false }, { \"url\": \"https://api.biblesupersearch.com/api?page=3\", \"label\": \"Next &raquo;\", \"active\": false } ], \"path\": \"https://api.biblesupersearch.com/api\", \"per_page\": 30, \"to\": 60, \"total\": 4118\""
+            "description": "Returns objects that contain information about the pages of the results. Information such as - Current page of results - URL for the first page - The search result that starts on the current page - The page number of the last page of results - URL for the last page - URLs for all pages of results - URL path for the endpoint - Search results per page - The number of search results for the current page - Total number of search results"
           },
           "errors": {
             "type": "array",
-            "description": "If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs.",
-            "example": "\"errors\": [ \"Cannot retrieve multiple books at once\" ]"
+            "description": "If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs."
           },
           "error_level": {
             "type": "integer",
-            "description": "Indicates the type of error that occurred. \"0\" - no error; \"1\" or \"2\" - reserved for future use; \"3\" - non-fatal error; \"4\" - fatal error.",
-            "example": 4
+            "description": "Indicates the type of error that occurred. \"0\" - no error; \"1\" or \"2\" - reserved for future use; \"3\" - non-fatal error; \"4\" - fatal error."
           },
           "results": {
-            "type": "array",
-            "description": "Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter:/ - **passage** (default):/ Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object. - **raw**:/ Returns verse data and less information about books and chapters.",
+            "description": "Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter.\n- **passage** (default) - Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.\n- **raw** - Returns verse data and less information about books and chapters.",
             "oneOf": [
               {
-                "title": "Results (passage)",
                 "type": "array",
+                "title": "passage",
                 "items": {
                   "$ref": "#/components/schemas/query_results_passage"
                 }
               },
               {
-                "title": "Results (raw)",
                 "type": "object",
-                "description": "Results (raw)",
+                "title": "raw",
                 "$ref": "#/components/schemas/query_results_raw"
               }
-            ],
-            "discriminator": {
-              "propertyName": "data_format"
-            }
+            ]
           }
         }
       }
@@ -616,14 +604,251 @@
               "$ref": "#/components/schemas/query"
             },
             "examples": {
-              "success": {
-                "summary": "Retrieved book",
+              "reference_passage": {
+                "summary": "Reference (passage)",
+                "description": "Response for a reference query in a **passage** `data_format` (e.g. Psalms63:1-2).",
                 "value": {
-                  "added": "2025-02-25 11:59:59",
-                  "author": "John Doe",
-                  "id": 123,
-                  "notes": "Here are some notes about the book.",
-                  "title": "Title of book"
+                  "hash": "pgvu7cuok3",
+                  "disambiguation": [],
+                  "strongs": [],
+                  "paging": [],
+                  "errors": [],
+                  "error_level": 0,
+                  "results": [
+                    {
+                      "book_id": 19,
+                      "book_name": "Psalms",
+                      "book_short": "Ps",
+                      "book_raw": "Psalm",
+                      "chapter_verse": "63:1 - 2",
+                      "chapter_verse_raw": null,
+                      "verse_index": {
+                        "63": [
+                          1,
+                          2
+                        ]
+                      },
+                      "verses": {
+                        "kjv": {
+                          "63": {
+                            "1": {
+                              "id": 14841,
+                              "book": 19,
+                              "chapter": 63,
+                              "verse": 1,
+                              "text": "¶ A Psalm of David, when he was in the wilderness of Judah. O God, thou art my God; early will I seek thee: my soul thirsteth for thee, my flesh longeth for thee in a dry and thirsty land, where no water is;",
+                              "italics": "",
+                              "claimed": true
+                            },
+                            "2": {
+                              "id": 14842,
+                              "book": 19,
+                              "chapter": 63,
+                              "verse": 2,
+                              "text": "To see thy power and thy glory, so as I have seen thee in the sanctuary.",
+                              "italics": "",
+                              "claimed": true
+                            }
+                          }
+                        }
+                      },
+                      "verses_count": 2,
+                      "single_verse": false,
+                      "nav": {
+                        "prev_book": "Job",
+                        "next_book": "Proverbs",
+                        "next_chapter": "Psalms 64",
+                        "ncb_name": "Psalms",
+                        "prev_chapter": "Psalms 62",
+                        "pcb_name": "Psalms",
+                        "curr_chapter": "Psalms 63",
+                        "ccb_name": "Psalms",
+                        "ncb": 19,
+                        "ncc": 64,
+                        "pcb": 19,
+                        "pcc": 62,
+                        "ccb": 19,
+                        "ccc": 63,
+                        "nb": 20,
+                        "pb": 18
+                      }
+                    }
+                  ]
+                }
+              },
+              "reference_raw": {
+                "summary": "Reference (raw)",
+                "description": "Response for a reference query in a **raw** `data_format` (e.g. Psalms63:1-2).",
+                "value": {
+                  "hash": "pgvu7cuok3",
+                  "disambiguation": [],
+                  "strongs": [],
+                  "paging": [],
+                  "errors": [],
+                  "error_level": 0,
+                  "results": {
+                    "kjv": [
+                      {
+                        "id": 14841,
+                        "book": 19,
+                        "chapter": 63,
+                        "verse": 1,
+                        "text": "¶ A Psalm of David, when he was in the wilderness of Judah. O God, thou art my God; early will I seek thee: my soul thirsteth for thee, my flesh longeth for thee in a dry and thirsty land, where no water is;",
+                        "italics": "",
+                        "claimed": true
+                      },
+                      {
+                        "id": 14842,
+                        "book": 19,
+                        "chapter": 63,
+                        "verse": 2,
+                        "text": "To see thy power and thy glory, so as I have seen thee in the sanctuary.",
+                        "italics": "",
+                        "claimed": true
+                      }
+                    ]
+                  }
+                }
+              },
+              "search_passage": {
+                "summary": "Search (passage)",
+                "description": "Response for a search query in a **passage** `data_format` (e.g. Peace).",
+                "value": {
+                  "hash": "573us0u6sh",
+                  "disambiguation": [],
+                  "strongs": [],
+                  "paging": {
+                    "current_page": 1,
+                    "first_page_url": "https://api.biblesupersearch.com/api?page=1",
+                    "from": 1,
+                    "last_page": 14,
+                    "last_page_url": "https://api.biblesupersearch.com/api?page=14",
+                    "links": [
+                      {
+                        "url": null,
+                        "label": "&laquo; Previous",
+                        "active": false
+                      },
+                      {
+                        "url": "https://api.biblesupersearch.com/api?page=1",
+                        "label": "1",
+                        "active": true
+                      },
+                      {
+                        "url": null,
+                        "label": "...",
+                        "active": false
+                      },
+                      {
+                        "url": "https://api.biblesupersearch.com/api?page=2",
+                        "label": "Next &raquo;",
+                        "active": false
+                      }
+                    ],
+                    "path": "https://api.biblesupersearch.com/api",
+                    "per_page": 30,
+                    "to": 30,
+                    "total": 420
+                  },
+                  "errors": [],
+                  "error_level": 0,
+                  "results": [
+                    {
+                      "book_id": 1,
+                      "book_name": "Genesis",
+                      "book_short": "gen",
+                      "book_raw": null,
+                      "chapter_verse": "15:15",
+                      "chapter_verse_raw": "15:15",
+                      "verse_index": {
+                        "15": [
+                          15
+                        ]
+                      },
+                      "verses": {
+                        "kjv": {
+                          "15": {
+                            "15": {
+                              "id": 376,
+                              "book": 1,
+                              "chapter": 15,
+                              "verse": 15,
+                              "text": "And thou shalt go to thy fathers in peace; thou shalt be buried in a good old age.",
+                              "italics": "",
+                              "claimed": true
+                            }
+                          }
+                        }
+                      },
+                      "verses_count": 1,
+                      "single_verse": true,
+                      "nav": []
+                    }
+                  ]
+                }
+              },
+              "search_raw": {
+                "summary": "Search (raw)",
+                "description": "Response for a search query in a **raw** `data_format` (e.g. Peace).",
+                "value": {
+                  "hash": "owbc87niaf",
+                  "disambiguation": [],
+                  "strongs": [],
+                  "paging": {
+                    "current_page": 1,
+                    "first_page_url": "https://api.biblesupersearch.com/api?page=1",
+                    "from": 1,
+                    "last_page": 14,
+                    "last_page_url": "https://api.biblesupersearch.com/api?page=14",
+                    "links": [
+                      {
+                        "url": null,
+                        "label": "&laquo; Previous",
+                        "active": false
+                      },
+                      {
+                        "url": "https://api.biblesupersearch.com/api?page=1",
+                        "label": "1",
+                        "active": true
+                      },
+                      {
+                        "url": null,
+                        "label": "...",
+                        "active": false
+                      },
+                      {
+                        "url": "https://api.biblesupersearch.com/api?page=2",
+                        "label": "Next &raquo;",
+                        "active": false
+                      }
+                    ],
+                    "path": "https://api.biblesupersearch.com/api",
+                    "per_page": 30,
+                    "to": 30,
+                    "total": 420
+                  },
+                  "errors": [],
+                  "error_level": 0,
+                  "results": {
+                    "kjv": [
+                      {
+                        "id": 376,
+                        "book": 1,
+                        "chapter": 15,
+                        "verse": 15,
+                        "text": "And thou shalt go to thy fathers in peace; thou shalt be buried in a good old age.",
+                        "italics": ""
+                      },
+                      {
+                        "id": 613,
+                        "book": 1,
+                        "chapter": 24,
+                        "verse": 21,
+                        "text": "And the man wondering at her held his peace, to wit whether the LORD had made his journey prosperous or not.",
+                        "italics": ""
+                      }
+                    ]
+                  }
                 }
               }
             }

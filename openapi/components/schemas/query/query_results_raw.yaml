@@ -1,6 +1,5 @@
 type: object
-title: Results (raw)
 description: Lists verse information based on the parameter details in the request. Returns results based on the `data_format`, which determines the structure of the results. 
 
-additionalProperties: 
-  $ref: translation_verse.yaml
+additionalProperties:
+  $ref: ./translation_verse.yaml

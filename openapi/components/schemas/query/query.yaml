@@ -6,11 +6,9 @@ properties:
   hash:
     type: string
     description: A hash code for the endpoint.
-    example: "prxqqipbx1"
   disambiguation:
     type: array
     description: The purpose of this object is still under investigation.
-    example: []
   strongs:
     type: array
     description: The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object.
@@ -27,117 +25,24 @@ properties:
       - Search results per page
       - The number of search results for the current page
       - Total number of search results
-    example: '"current_page": 2,
-        "first_page_url": "https://api.biblesupersearch.com/api?page=1",
-        "from": 31,
-        "last_page": 138,
-        "last_page_url": "https://api.biblesupersearch.com/api?page=138",
-        "links": [
-            {
-                "url": "https://api.biblesupersearch.com/api?page=1",
-                "label": "&laquo; Previous",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=1",
-                "label": "1",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=2",
-                "label": "2",
-                "active": true
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=3",
-                "label": "3",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=4",
-                "label": "4",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=5",
-                "label": "5",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=6",
-                "label": "6",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=7",
-                "label": "7",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=8",
-                "label": "8",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=9",
-                "label": "9",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=10",
-                "label": "10",
-                "active": false
-            },
-            {
-                "url": null,
-                "label": "...",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=137",
-                "label": "137",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=138",
-                "label": "138",
-                "active": false
-            },
-            {
-                "url": "https://api.biblesupersearch.com/api?page=3",
-                "label": "Next &raquo;",
-                "active": false
-            }
-        ],
-        "path": "https://api.biblesupersearch.com/api",
-        "per_page": 30,
-        "to": 60,
-        "total": 4118"'
   errors:
     type: array
     description: If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs.
-    example: '"errors": [
-      "Cannot retrieve multiple books at once"
-    ]'
   error_level:
     type: integer
     description: Indicates the type of error that occurred. "0" - no error; "1" or "2" - reserved for future use; "3" - non-fatal error; "4" - fatal error.
-    example: 4
   results:
-    type: array
-    description: Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter:/
-      - **passage** (default):/ Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.
-      - **raw**:/ Returns verse data and less information about books and chapters.
+    description: Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter.
+
+      - **passage** (default) - Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.
+
+      - **raw** - Returns verse data and less information about books and chapters.
     oneOf: 
-      - title: Results (passage)
-        type: array
+      - type: array 
+        title: passage
         items:
           $ref: ./query_results_passage.yaml
-      - title: Results (raw)
-        type: object
-        description: Results (raw)
+      - type: object
+        title: raw
         $ref: ./query_results_raw.yaml
-    discriminator:
-        propertyName: data_format
-
     
