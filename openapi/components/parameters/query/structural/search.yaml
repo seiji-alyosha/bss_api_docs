@@ -1,6 +1,7 @@
 name: search
 in: query
-description: Keyword search (i.e. love, joy, peace, etc.)
+required: false
+description: Keyword search (i.e. love, joy, peace)
 schema:
   type: string
   default: (none)

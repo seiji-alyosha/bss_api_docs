@@ -1,6 +1,7 @@
 name: request
 in: query
-description: Receives keywords or passage references. Cannot receive both. If a passage is used, the response format is the same as the response for the reference parameter. If a keyword is used, the response format is the same as the keyword parameter.
+required: false
+description: Receives keywords or bible references. Cannot receive both. If a passage is used, the `200` response is the same as the response when using the `reference` parameter. If a keyword is used, the response format is the same as the response when using the `search` parameter.
 schema:
   type: string
   default: (none)

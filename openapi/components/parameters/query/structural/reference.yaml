@@ -1,7 +1,7 @@
 name: reference
 in: query
 required: false
-description: The passage reference.
+description: The passage reference (i.e. Psalm63:1-2)
 schema:
   type: string
   default: (none)

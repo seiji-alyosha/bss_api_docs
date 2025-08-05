@@ -2,4 +2,12 @@ description: Problem
 content:
   application/problem+json:
     schema:
-      $ref: ../schemas/Problem.yaml
+      $ref: ../schemas/query/query.yaml
+    example: 
+      summary: error
+      description: A 
+      hash: "3bucsf74xc"
+      disambiguation: []
+      errors: "An error messgae about the request and how to fix it."
+      error_level: 4
+      results: false

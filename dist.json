@@ -111,7 +111,7 @@
         "name": "reference",
         "in": "query",
         "required": false,
-        "description": "The passage reference.",
+        "description": "The passage reference (i.e. Psalm63:1-2)",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -120,7 +120,8 @@
       "search": {
         "name": "search",
         "in": "query",
-        "description": "Keyword search (i.e. love, joy, peace, etc.)",
+        "required": false,
+        "description": "Keyword search (i.e. love, joy, peace)",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -129,7 +130,8 @@
       "request": {
         "name": "request",
         "in": "query",
-        "description": "Receives keywords or passage references. Cannot receive both. If a passage is used, the response format is the same as the response for the reference parameter. If a keyword is used, the response format is the same as the keyword parameter.",
+        "required": false,
+        "description": "Receives keywords or bible references. Cannot receive both. If a passage is used, the `200` response is the same as the response when using the `reference` parameter. If a keyword is used, the response format is the same as the response when using the `search` parameter.",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -138,7 +140,8 @@
       "data_format": {
         "name": "data_format",
         "in": "query",
-        "description": "Formats the outputed data structure. Parameter values can either be raw/minimal or passage. Raw/minimal formats data verse by verse. Passage formats data by passage.",
+        "required": false,
+        "description": "Formats the structure of the endpoint response. Parameter values can either be:\n- **Passage** - For more informative responses\n- **Raw / minimal** - For more concise responses",
         "schema": {
           "type": "string",
           "default": "passage"

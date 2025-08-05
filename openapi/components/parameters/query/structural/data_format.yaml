@@ -1,9 +1,12 @@
 name: data_format
 in: query
+required: false
 description: >-
-  Formats the outputed data structure. Parameter values can either be
-  raw/minimal or passage. Raw/minimal formats data verse by verse. Passage
-  formats data by passage.
+  Formats the structure of the endpoint response. Parameter values can either be:
+
+  - **Passage** - For more informative responses
+
+  - **Raw / minimal** - For more concise responses
 schema:
   type: string
   default: passage
