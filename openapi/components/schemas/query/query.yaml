@@ -27,10 +27,15 @@ properties:
       - Total number of search results
   errors:
     type: array
-    description: If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs.
+    description: If errors occur during the request, this array displays messages about the errors.
   error_level:
     type: integer
-    description: Indicates the type of error that occurred. "0" - no error; "1" or "2" - reserved for future use; "3" - non-fatal error; "4" - fatal error.
+    description: >-
+      Indicates the type of error that occurred: 
+        - **0** - no error
+        - **1** or **2** - reserved for future use
+        - **3** - non-fatal error
+        - **4** - fatal error
   results:
     description: Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter.
 

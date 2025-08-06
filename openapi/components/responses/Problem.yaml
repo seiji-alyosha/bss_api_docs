@@ -1,13 +1,18 @@
-description: Problem
+description: Error
+
 content:
-  application/problem+json:
+  application/json:
     schema:
-      $ref: ../schemas/query/query.yaml
-    example: 
-      summary: error
-      description: A 
-      hash: "3bucsf74xc"
-      disambiguation: []
-      errors: "An error messgae about the request and how to fix it."
-      error_level: 4
-      results: false
+      $ref: ../schemas/query/error.yaml
+    examples:
+      error: 
+        summary: error
+        description: Response for when the request could not retrieve the specified information.
+        value: 
+          hash: "3bucsf74xc"
+          disambiguation: []
+          errors: [
+            "An error messgae about the request and how to fix it."
+          ]
+          error_level: 4
+          results: false

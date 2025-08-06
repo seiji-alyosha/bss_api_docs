@@ -1,0 +1,25 @@
+type: object
+title: error
+description: The response schema for a 400 error.
+
+properties:
+  hash:
+    type: string
+    description: A hash code for the endpoint.
+  disambiguation:
+    type: array
+    description: The purpose of this object is still under investigation.
+  errors:
+    type: array
+    description: If errors occur during the request, this array displays messages about the errors.
+  error_level:
+    type: integer
+    description: >-
+      Indicates the type of error that occurred: 
+        - **0** - no error
+        - **1** or **2** - reserved for future use
+        - **3** - non-fatal error
+        - **4** - fatal error
+  results:
+    type: boolean
+    description: Displays as "false".

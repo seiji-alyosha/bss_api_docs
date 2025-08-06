@@ -94,11 +94,8 @@
           "200": {
             "$ref": "#/components/responses/Success"
           },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "400": {
+            "$ref": "#/components/responses/Problem"
           }
         },
         "security": null
@@ -572,11 +569,11 @@
           },
           "errors": {
             "type": "array",
-            "description": "If errors occur during the request, this array displays messages about the errors. The API returns a HTTP status code of 400 when an error occurs."
+            "description": "If errors occur during the request, this array displays messages about the errors."
           },
           "error_level": {
             "type": "integer",
-            "description": "Indicates the type of error that occurred. \"0\" - no error; \"1\" or \"2\" - reserved for future use; \"3\" - non-fatal error; \"4\" - fatal error."
+            "description": "Indicates the type of error that occurred: \n  - **0** - no error\n  - **1** or **2** - reserved for future use\n  - **3** - non-fatal error\n  - **4** - fatal error"
           },
           "results": {
             "description": "Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter.\n- **passage** (default) - Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.\n- **raw** - Returns verse data and less information about books and chapters.",
@@ -596,11 +593,38 @@
             ]
           }
         }
+      },
+      "error": {
+        "type": "object",
+        "title": "error",
+        "description": "The response schema for a 400 error.",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "A hash code for the endpoint."
+          },
+          "disambiguation": {
+            "type": "array",
+            "description": "The purpose of this object is still under investigation."
+          },
+          "errors": {
+            "type": "array",
+            "description": "If errors occur during the request, this array displays messages about the errors."
+          },
+          "error_level": {
+            "type": "integer",
+            "description": "Indicates the type of error that occurred: \n  - **0** - no error\n  - **1** or **2** - reserved for future use\n  - **3** - non-fatal error\n  - **4** - fatal error"
+          },
+          "results": {
+            "type": "boolean",
+            "description": "Displays as \"false\"."
+          }
+        }
       }
     },
     "responses": {
       "Success": {
-        "description": "Successful response.",
+        "description": "Successful",
         "content": {
           "application/json": {
             "schema": {
@@ -858,47 +882,25 @@
           }
         }
       },
-      "Unauthorized": {
-        "description": "Authentication failed",
+      "Problem": {
+        "description": "Error",
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "An error message that tells users what happened and how to prevent the error."
-                }
-              }
+              "$ref": "#/components/schemas/error"
             },
             "examples": {
-              "no_auth": {
-                "summary": "No credentials provided",
+              "error": {
+                "summary": "error",
+                "description": "Response for when the request could not retrieve the specified information.",
                 "value": {
-                  "error": "Please provide a username and a password."
-                }
-              },
-              "invalid_auth": {
-                "summary": "Invalid credentials",
-                "value": {
-                  "error": "We couldn't find that account. Please try again with a different username and/or password."
-                }
-              }
-            }
-          }
-        }
-      },
-      "NotFound": {
-        "description": "Book not found",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "An error message that tells users what happened and how to prevent the error.",
-                  "example": "Sorry, we couldn't find a book with that id. Please try with a different id."
+                  "hash": "3bucsf74xc",
+                  "disambiguation": [],
+                  "errors": [
+                    "An error messgae about the request and how to fix it."
+                  ],
+                  "error_level": 4,
+                  "results": false
                 }
               }
             }
