@@ -26,8 +26,7 @@
     "/api": {
       "get": {
         "summary": "Query",
-        "description": "For all queries of Bible information in our database. Includes both keyword searches and passage retrieval.",
-        "operationId": "QueryPath",
+        "description": "For all queries of Bible information in our database.",
         "parameters": [
           {
             "$ref": "#/components/parameters/reference"
@@ -90,6 +89,14 @@
             "$ref": "#/components/parameters/callback"
           }
         ],
+        "examples": {
+          "reference_url": {
+            "summary": "Get a Bible pasasage",
+            "value": {
+              "reference": "john3:16"
+            }
+          }
+        },
         "responses": {
           "200": {
             "$ref": "#/components/responses/Success"
@@ -108,7 +115,7 @@
         "name": "reference",
         "in": "query",
         "required": false,
-        "description": "The passage reference (i.e. Psalm63:1-2)",
+        "description": "To find a passage reference (i.e. Psalm63:1-2).",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -118,7 +125,7 @@
         "name": "search",
         "in": "query",
         "required": false,
-        "description": "Keyword search (i.e. love, joy, peace)",
+        "description": "To look for verses with specific words (i.e. love, joy, peace).",
         "schema": {
           "type": "string",
           "default": "(none)"

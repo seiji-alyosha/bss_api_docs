@@ -1,9 +1,7 @@
 get:
   summary: Query
   description: >-
-    For all queries of Bible information in our database. Includes both keyword
-    searches and passage retrieval.
-  operationId: QueryPath
+    For all queries of Bible information in our database.
   parameters:
     - $ref: ../components/parameters/query/structural/reference.yaml
     - $ref: ../components/parameters/query/structural/search.yaml
@@ -25,6 +23,20 @@ get:
     - $ref: ../components/parameters/query/additional/markup.yaml
     - $ref: ../components/parameters/query/additional/parallel_search_error_suppress.yaml
     - $ref: ../components/parameters/query/additional/callback.yaml
+  x-code-samples:
+    - lang: curl
+      label: "Reference"
+      source: |
+        curl "https://api.biblesupersearch.com/api?reference=Psalm+63:1-2"
+    - lang: curl
+      label: "Search"
+      source: |
+        curl "https://api.biblesupersearch.com/api?search=peace"
+    - lang: curl
+      label: "Request"
+      source: |
+        curl "https://api.biblesupersearch.com/api?request=John3:16"
+
   responses:
     '200':
       $ref: ../components/responses/Success.yaml

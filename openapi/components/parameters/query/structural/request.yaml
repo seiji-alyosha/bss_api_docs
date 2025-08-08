@@ -1,7 +1,8 @@
 name: request
 in: query
 required: false
-description: Receives keywords or bible references. Cannot receive both. If a passage is used, the `200` response is the same as the response when using the `reference` parameter. If a keyword is used, the response format is the same as the response when using the `search` parameter.
+description: Keywords or Bible passasge references. Cannot be both. If a passage, the response format looks like the `reference` parameter response. If a keyword, the response format looks like the `search` parameter response.
+example: John 3:16
 schema:
   type: string
   default: (none)

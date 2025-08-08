@@ -1,9 +1,12 @@
 name: markup
 in: query
 description: >-
-  Formats the markup for Strongs numbers or red letters. 'None', or 'raw'. 'raw'
-  returns the markup as stored in the database. {} = srongs numbers, [] = added
-  words, ‹› = red letters (not <>). Default is 5.
+  Formats the markup for Strongs numbers or red letters. The options include:
+    - **none** - No formatting applied.
+    - **raw** - Returns the markup as stored in the database.
+      - {} = strongs numbers
+      - [] = added
+      - ‹› (not <>) = red letters
 schema:
   type: string
   default: none

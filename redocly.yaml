@@ -1,6 +1,6 @@
 # See https://redocly.com/docs/cli/configuration/ for more information.
 apis:
-  ennoia@v1: 
+  biblesupersearchapi@v6.0.4: 
     root: openapi/openapi.yaml
 extends:
   - recommended

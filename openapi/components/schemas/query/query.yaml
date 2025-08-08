@@ -11,7 +11,7 @@ properties:
     description: The purpose of this object is still under investigation.
   strongs:
     type: array
-    description: The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object.
+    description: The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connect to this object.
   paging:
     type: object
     description: Returns objects that contain information about the pages of the results. Information such as

@@ -1,7 +1,8 @@
 name: search
 in: query
 required: false
-description: Keyword search (i.e. love, joy, peace)
+description: A keyword that can be found in the Bible.
+example: Peace
 schema:
   type: string
   default: (none)

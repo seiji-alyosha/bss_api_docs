@@ -2,7 +2,7 @@ name: data_format
 in: query
 required: false
 description: >-
-  Formats the structure of the endpoint response. Parameter values can either be:
+  Formats the structure of the response. Parameter values can either be:
 
   - **Passage** - For more informative responses
 
