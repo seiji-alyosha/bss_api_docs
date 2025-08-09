@@ -20,23 +20,24 @@ properties:
     example: "Psa"
   chapter_verse:
     type: string
-    description: The chapter and verse.
+    description: The chapter and verse returned by the request.
     example: "63:1"
   chapter_verse_raw:
     type: string
     description: The chapter and verse entered by the user.
-    example: "63:1"
+    example: "63: 1"
   verse_index:
     type: object
     description: Contains arrays of each chapter in the search.
     additionalProperties: 
       $ref: ./verse_index_chapter.yaml
 
-    example: "'verse_index': {
-      '63': [
-        1
-      ]
-    }"
+    example:
+      'verse_index': {
+        '63': [
+          1
+        ]
+      }
 
   verses:
     type: object
@@ -55,7 +56,7 @@ properties:
 
   single_verse:
     type: boolean
-    description: "Shows if the user searched for one verse or not."
+    description: Shows if the user searched for one verse or not.
     example: true
   nav:
     $ref: ./nav.yaml

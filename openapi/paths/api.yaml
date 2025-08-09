@@ -23,7 +23,7 @@ get:
     - $ref: ../components/parameters/query/additional/markup.yaml
     - $ref: ../components/parameters/query/additional/parallel_search_error_suppress.yaml
     - $ref: ../components/parameters/query/additional/callback.yaml
-  x-code-samples:
+  x-codeSamples:
     - lang: curl
       label: "Reference"
       source: |

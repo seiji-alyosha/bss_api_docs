@@ -5,52 +5,52 @@ description: "Contains metadata for navigating multiple verses. Only applicable 
 properties:
   prev_book:
     type: string
-    description: "The previous book."
+    description: The previous book.
   next_book:
     type: string
-    description: "The next book."
+    description: The next book.
   next_chapter:
     type: string
-    description: "For the next chapter."
+    description: For the next chapter.
   ncb_name:
     type: string
-    description: "Next chapter book name. For the name of the ncb."
+    description: Next chapter book name. For the name of the ncb.
   prev_chapter:
     type: string
-    description: "For the previous chapter of the book."
+    description: For the previous chapter of the book.
   pcb_name: 
     type: string
-    description: "Previous chapter book name. For the name of the pcb."
+    description: Previous chapter book name. For the name of the pcb.
   cur_chapter:
     type: string
-    description: "For the name of the current chapter of the book."
+    description: For the name of the current chapter of the book.
   ccb_name:
     type: string
-    description: "Current chapter book name. Used for the name of the ccb."
+    description: Current chapter book name. Used for the name of the ccb.
   ncb:
     type: integer
-    description: "Next chapter book id. Used to identify the book of the next chapter of the search entry."
+    description: Next chapter book id. Used to identify the book of the next chapter of the search entry.
   ncc:
     type: integer
-    description: "Next chapter chapter id. Used to identify the chapter for the next chapter of the search entry."
+    description: Next chapter chapter id. Used to identify the chapter for the next chapter of the search entry.
   pcb:
     type: integer
-    description: "Previous chapter book id. Used to identify the book for the previous chapter of the search entry."
+    description: Previous chapter book id. Used to identify the book for the previous chapter of the search entry.
   pcc:
     type: integer
-    description: "Previous chapter chapter id. Used to identify the chapter for the previous chapter of the search entry."
+    description: Previous chapter chapter id. Used to identify the chapter for the previous chapter of the search entry.
   ccb:
     type: integer
-    description: "Current chapter book id. Used to identify the book of the search entry."
+    description: Current chapter book id. Used to identify the book of the search entry.
   ccc:
     type: integer
-    description: "Current chapter chapter id. Used to identify the chapter of the search entry."
+    description: Current chapter chapter id. Used to identify the chapter of the search entry.
   nb:
     type: integer
-    description: "Book id for the next book."
+    description: Book id for the next book.
   pb: 
     type: integer
-    description: "Book id for the previous book."
+    description: Book id for the previous book.
 
 
 

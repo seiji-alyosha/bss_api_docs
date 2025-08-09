@@ -89,14 +89,23 @@
             "$ref": "#/components/parameters/callback"
           }
         ],
-        "examples": {
-          "reference_url": {
-            "summary": "Get a Bible pasasage",
-            "value": {
-              "reference": "john3:16"
-            }
+        "x-code-samples": [
+          {
+            "lang": "curl",
+            "label": "Reference",
+            "source": "curl \"https://api.biblesupersearch.com/api?reference=Psalm+63:1-2\"\n"
+          },
+          {
+            "lang": "curl",
+            "label": "Search",
+            "source": "curl \"https://api.biblesupersearch.com/api?search=peace\"\n"
+          },
+          {
+            "lang": "curl",
+            "label": "Request",
+            "source": "curl \"https://api.biblesupersearch.com/api?request=John3:16\"\n"
           }
-        },
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/Success"
@@ -115,7 +124,8 @@
         "name": "reference",
         "in": "query",
         "required": false,
-        "description": "To find a passage reference (i.e. Psalm63:1-2).",
+        "description": "A Bible passage reference.",
+        "example": "Psalm 63:1-2",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -125,7 +135,8 @@
         "name": "search",
         "in": "query",
         "required": false,
-        "description": "To look for verses with specific words (i.e. love, joy, peace).",
+        "description": "A keyword that can be found in the Bible.",
+        "example": "Peace",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -135,7 +146,8 @@
         "name": "request",
         "in": "query",
         "required": false,
-        "description": "Receives keywords or bible references. Cannot receive both. If a passage is used, the `200` response is the same as the response when using the `reference` parameter. If a keyword is used, the response format is the same as the response when using the `search` parameter.",
+        "description": "Keywords or Bible passasge references. Cannot be both. If a passage, the response format looks like the `reference` parameter response. If a keyword, the response format looks like the `search` parameter response.",
+        "example": "John 3:16",
         "schema": {
           "type": "string",
           "default": "(none)"
@@ -145,7 +157,7 @@
         "name": "data_format",
         "in": "query",
         "required": false,
-        "description": "Formats the structure of the endpoint response. Parameter values can either be:\n- **Passage** - For more informative responses\n- **Raw / minimal** - For more concise responses",
+        "description": "Formats the structure of the response. Parameter values can either be:\n- **Passage** - For more informative responses\n- **Raw / minimal** - For more concise responses",
         "schema": {
           "type": "string",
           "default": "passage"
@@ -154,7 +166,7 @@
       "bible": {
         "name": "bible",
         "in": "query",
-        "description": "Translation of the bible. Can be a string, array, or JSON encoded array.",
+        "description": "Translation of the bible. Can be a: \n  - string \n  - array\n  - JSON encoded array",
         "schema": {
           "type": "string",
           "default": "kjv"
@@ -245,11 +257,12 @@
       "search_type": {
         "name": "search_type",
         "in": "query",
-        "description": "The type of search when using the keyword search. 'and' or 'all_words' - searches for verses with the given words. 'or' or 'any_word'  - seaches for verses mentioning at least one of the given words. 'xor' or 'one_word' - searches for verses with one of the given words. two_or_more' - searches for verses with two or more of the given words.'",
+        "description": "The type of search when using the keyword search. The options include:\n  - **and** or **all_words** - Searches for verses with the given words. \n  - **or** or **any_word** - Seaches for verses mentioning at least one of the given words. \n  - **xor** or **one_word** - Searches for verses with one of the given words. \n  - **two_or_more** - Searches for verses with two or more of the given words.",
         "schema": {
           "type": "string",
           "default": "and"
-        }
+        },
+        "example": "or"
       },
       "keyword_limit": {
         "name": "keyword_limit",
@@ -263,7 +276,7 @@
       "proximity_limit": {
         "name": "proximity_limit",
         "in": "query",
-        "description": "Sets the range of verses of allowable verses between keywords. Default is 5.",
+        "description": "Sets the range of verses of allowable verses between keywords.",
         "schema": {
           "type": "integer",
           "default": 5
@@ -272,7 +285,7 @@
       "markup": {
         "name": "markup",
         "in": "query",
-        "description": "Formats the markup for Strongs numbers or red letters. 'None', or 'raw'. 'raw' returns the markup as stored in the database. {} = srongs numbers, [] = added words, ‹› = red letters (not <>). Default is 5.",
+        "description": "Formats the markup for Strongs numbers or red letters. The options include:\n  - **none** - No formatting applied.\n  - **raw** - Returns the markup as stored in the database.\n    - {} = strongs numbers\n    - [] = added\n    - ‹› (not <>) = red letters",
         "schema": {
           "type": "string",
           "default": "none"
@@ -281,7 +294,7 @@
       "parallel_search_error_suppress": {
         "name": "parallel_search_error_suppress",
         "in": "query",
-        "description": "The 'verses from this Bible have been included for comparison' errors won't show.",
+        "description": "The **verses from this Bible have been included for comparison** errors won't show.",
         "schema": {
           "type": "boolean",
           "default": false
@@ -482,13 +495,13 @@
           },
           "chapter_verse": {
             "type": "string",
-            "description": "The chapter and verse.",
+            "description": "The chapter and verse returned by the request.",
             "example": "63:1"
           },
           "chapter_verse_raw": {
             "type": "string",
             "description": "The chapter and verse entered by the user.",
-            "example": "63:1"
+            "example": "63: 1"
           },
           "verse_index": {
             "type": "object",
@@ -496,7 +509,13 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/verse_index_chapter"
             },
-            "example": "'verse_index': { '63': [ 1 ] }"
+            "example": {
+              "verse_index": {
+                "63": [
+                  1
+                ]
+              }
+            }
           },
           "verses": {
             "type": "object",
@@ -560,7 +579,8 @@
         "properties": {
           "hash": {
             "type": "string",
-            "description": "A hash code for the endpoint."
+            "description": "A hash code for the endpoint.",
+            "example": "pgvu7cuok3"
           },
           "disambiguation": {
             "type": "array",
@@ -568,22 +588,23 @@
           },
           "strongs": {
             "type": "array",
-            "description": "The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connected to this object."
+            "description": "The contents of this object is unclear. The Strong's definitions endpoint (https://api.biblesupersearch.com/api/strongs) returns Strong's definitions, but this doesn't seem to connect to this object."
           },
           "paging": {
             "type": "object",
-            "description": "Returns objects that contain information about the pages of the results. Information such as - Current page of results - URL for the first page - The search result that starts on the current page - The page number of the last page of results - URL for the last page - URLs for all pages of results - URL path for the endpoint - Search results per page - The number of search results for the current page - Total number of search results"
+            "description": "Returns objects that contain information about the pages of the results. Information such as: - Current page of results - URL for the first page - The search result that starts on the current page - The page number of the last page of results - URL for the last page - URLs for all pages of results - URL path for the endpoint - Search results per page - The number of search results for the current page - Total number of search results"
           },
           "errors": {
             "type": "array",
-            "description": "If errors occur during the request, this array displays messages about the errors."
+            "description": "If errors occur during the request, this array displays an error message."
           },
           "error_level": {
             "type": "integer",
-            "description": "Indicates the type of error that occurred: \n  - **0** - no error\n  - **1** or **2** - reserved for future use\n  - **3** - non-fatal error\n  - **4** - fatal error"
+            "description": "Indicates the type of error that occurred: \n  - **0** - no error\n  - **1** or **2** - reserved for future use\n  - **3** - non-fatal error\n  - **4** - fatal error",
+            "example": 0
           },
           "results": {
-            "description": "Search results and/or Biblical passages based on the information provided in the request. The structure depends on the `data_format` parameter.\n- **passage** (default) - Returns verse data, along with additional information about the book and chapter. When you do not provide a `data_format`, this is the format of the results object.\n- **raw** - Returns verse data and less information about books and chapters.",
+            "description": "Bible verses based on the parameters in the request. The structure depends on the `data_format` parameter.\n- **passage** (default) - Returns verse data, along with additional information about the book and chapter.\n- **raw** - Returns verse data and less information about books and chapters.",
             "oneOf": [
               {
                 "type": "array",
