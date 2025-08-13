@@ -51,37 +51,37 @@ get:
 
     - lang: js
       label: "Search (JavaScript - Fetch)"
-      source: |
+      source:
         $ref: ../code_samples/search.js
 
     - lang: py
       label: "Search (Python - Requests)"
-      source: |
+      source:
         $ref: ../code_samples/search.py
 
     - lang: php
       label: "Search (PHP - cURL)"
-      source: |
+      source:
         $ref: ../code_samples/search.php
 
     - lang: curl
       label: "Request (cURL)"
-      source: |
+      source:
         curl "https://api.biblesupersearch.com/api?request=John3:16"
     
     - lang: js
       label: "Request (JavaScript - Fetch)"
-      source: |
+      source:
         $ref: ../code_samples/request.js
 
     - lang: py
       label: "Request (Python - Requests)"
-      source: |
+      source:
         $ref: ../code_samples/request.py
 
     - lang: php
       label: "Request (PHP - cURL)"
-      source: |
+      source:
         $ref: ../code_samples/request.php
   responses:
     '200':

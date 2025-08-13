@@ -7,7 +7,7 @@ content:
     examples:
       reference_passage:
         summary: Reference (passage)
-        description: Response for a reference query in a **passage** `data_format` (e.g. Psalms63:1-2).
+        description: Response for a reference query in a **passage** `data_format` (e.g. Psalm63:1-2).
         value: 
             hash: "pgvu7cuok3"
             disambiguation: []
@@ -64,7 +64,7 @@ content:
                   pb: 18  
       reference_raw:
         summary: Reference (raw)
-        description: Response for a reference query in a **raw** `data_format` (e.g. Psalms63:1-2).
+        description: Response for a reference query in a **raw** `data_format` (e.g. Psalm63:1-2).
         value:
             hash: "pgvu7cuok3"
             disambiguation: []

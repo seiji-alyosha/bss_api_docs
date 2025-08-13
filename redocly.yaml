@@ -14,6 +14,7 @@ theme:
       colors:
         primary:
           main: "#011936"
+        background: "#000000"
         text:
           primary: "#000000"
       typography:
