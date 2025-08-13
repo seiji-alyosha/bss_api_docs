@@ -25,18 +25,64 @@ get:
     - $ref: ../components/parameters/query/additional/callback.yaml
   x-codeSamples:
     - lang: curl
-      label: "Reference"
+      label: "Reference - raw (cURL)"
       source: |
         curl "https://api.biblesupersearch.com/api?reference=Psalm+63:1-2"
+    
+    - lang: js
+      label: "Reference - raw (JavaScript - Fetch)"
+      source:
+        $ref: ../code_samples/reference_raw.js
+
+    - lang: py
+      label: "Reference - raw (Python - Requests)"
+      source:
+        $ref: ../code_samples/reference_raw.py
+
+    - lang: php
+      label: "Reference - raw (PHP - cURL)"
+      source:
+        $ref: ../code_samples/reference_raw.php
+
     - lang: curl
-      label: "Search"
+      label: "Search (cURL)"
       source: |
         curl "https://api.biblesupersearch.com/api?search=peace"
+
+    - lang: js
+      label: "Search (JavaScript - Fetch)"
+      source: |
+        $ref: ../code_samples/search.js
+
+    - lang: py
+      label: "Search (Python - Requests)"
+      source: |
+        $ref: ../code_samples/search.py
+
+    - lang: php
+      label: "Search (PHP - cURL)"
+      source: |
+        $ref: ../code_samples/search.php
+
     - lang: curl
-      label: "Request"
+      label: "Request (cURL)"
       source: |
         curl "https://api.biblesupersearch.com/api?request=John3:16"
+    
+    - lang: js
+      label: "Request (JavaScript - Fetch)"
+      source: |
+        $ref: ../code_samples/request.js
 
+    - lang: py
+      label: "Request (Python - Requests)"
+      source: |
+        $ref: ../code_samples/request.py
+
+    - lang: php
+      label: "Request (PHP - cURL)"
+      source: |
+        $ref: ../code_samples/request.php
   responses:
     '200':
       $ref: ../components/responses/Success.yaml

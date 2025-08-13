@@ -1,0 +1,13 @@
+const myHeaders = new Headers();
+myHeaders.append("Cookie", "XSRF-TOKEN=eyJpdiI6ImZTbDZIUk1HZEEyWnRibjVvS1djT1E9PSIsInZhbHVlIjoiWFhhWTdQNm1mbWs1UHdDU1QycVZxdmhsZ2t4ZmZVY3JJaHZHdDQ5TS9DTkxxK1d6WkJCdXdTZTdYc2pjdHlCT083ODJjWXBYZGpud0tSVDRCMDhEbVJJL3UwR2NIMGt6aVlLbS83Mi9UL21naGF3NHFaUlhHZFpXMXF2dkhmVkYiLCJtYWMiOiI4ZDEzNDRhM2Q3YmU5OTAwYzI4N2UzOWI1NWM4ZTg4OTkyOTE2Y2NlMjZjNmQwZmI4M2FhNWVjMTY3NmQ0MDExIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6IkI3bXFWZnptSUxwZ25XVStWVnl4Wmc9PSIsInZhbHVlIjoibjl3RUszS3YzMnV0WlpydnhyS3JTTnpKWlZrMURJM05RbExZTXA0bDRCd0c0S1R5SktHWm1xbklleVlqZzRqakpSWXB4cmpTbTZEblpGSEdJMTUxamhpZkRuMmdMMjJxOHVYVURTWlRma3FyVVVFYWp2TXFzSi9NUTZnd1NTUTYiLCJtYWMiOiJkMmJjYjcxMTE0N2Y5M2FkMzgzMTNiNTUyZmM4NzU0N2I4MDAxOTg3MDYxNWI2NzBhNzBiOTBlNzZlNGIwM2Y2IiwidGFnIjoiIn0%3D");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("https://api.biblesupersearch.com/api?search=Peace", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
